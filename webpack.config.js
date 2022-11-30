@@ -1,7 +1,6 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
-
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV == "production";
 
@@ -30,6 +29,10 @@ const config = {
 				type: "asset",
 			},
 		],
+	},
+	optimization: {
+		minimize: true,
+		minimizer: [new CssMinimizerPlugin()],
 	},
 	resolve: {
 		extensions: [".tsx", ".ts", ".jsx", ".js", "..."],
