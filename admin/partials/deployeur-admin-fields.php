@@ -6,7 +6,7 @@
 			case 'select': ?>
 				<select id="<?= esc_attr($field['name']); ?>" class="!px-2 !py-1 block w-full !max-w-lg rounded-md !border-gray-300 focus:!shadow-none focus:!ring-2 focus:!border-green focus:!ring-green sm:text-sm transition" name="deployeur_options[<?= esc_attr($field['name']); ?>]">
 					<?php foreach ($field['options'] as $key => $value) : ?>
-						<option value="<?= $key ?>" <?= $key == $options[$field['name']] ? "selected" : "" ?>><?= $value ?></option>
+						<option value="<?= $key ?>" <?= isset($options[$field['name']]) ? ($key == $options[$field['name']] ? "selected" : "") : "" ?>><?= $value ?></option>
 					<?php endforeach; ?>
 				</select>
 			<?php break;
