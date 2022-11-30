@@ -1,7 +1,7 @@
 {
-	"name": "my-webpack-project",
-	"version": "1.0.0",
-	"main": "index.js",
+	"name": "mk-deployeur",
+	"version": "0.1.2",
+	"main": "./assets/scripts/index.ts",
 	"repository": "git@github.com:MediakodTeam/wp-plugin-wp2headless.git",
 	"author": "Logan Blangenois <logan.blangenois@mediakod.com>",
 	"license": "MIT",
@@ -30,6 +30,5 @@
 		"typescript": "^4.9.3",
 		"webpack": "^5.75.0",
 		"webpack-cli": "^5.0.0"
-	},
-	"description": "My webpack project"
+	}
 }

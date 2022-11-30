@@ -8,7 +8,7 @@
  * Author URI:  https://mediakod.com
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Version:     0.1.1
+ * Version:     0.1.2
  * Text Domain: mk-deployeur
  * Prefix: mkd_
  * 
@@ -19,7 +19,7 @@ if (!defined('WPINC')) {
 	die;
 }
 
-define('MKD_VERSION', '0.1.1');
+define('MKD_VERSION', '0.1.2');
 
 /**
  * The core plugin class that is used to define internationalization,
