@@ -141,8 +141,13 @@ class Deployeur_Admin {
 			),
 			array(
 				"id" => "deployeur_section_site_options",
-				"title" => __('Site options', 'deployeur'),
+				"title" => __('Site settings', 'deployeur'),
 				"description" => __('This information is used to clean your data on the API'),
+				"icon" => "admin-settings"
+			),
+			array(
+				"id" => "deployeur_section_plguin_options",
+				"title" => __('Plugin settings', 'deployeur'),
 				"icon" => "admin-generic"
 			),
 		);
@@ -181,6 +186,13 @@ class Deployeur_Admin {
 				"name" => "deployeur_imgkit_url",
 				"title" => __("ImageKit endpoints", 'deployeur'),
 				"section" => "deployeur_section_site_options",
+			),
+			array(
+				"type" => "checkbox",
+				"name" => "deployeur_keep",
+				"title" => __("Data", 'deployeur'),
+				"section" => "deployeur_section_plguin_options",
+				"label" => __("Keep the data on plugin deactivation", 'deployeur'),
 			)
 		);
 	}

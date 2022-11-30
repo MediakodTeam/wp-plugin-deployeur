@@ -56,8 +56,8 @@ $options = get_option('deployeur_options');
 			do_settings_sections('deployeur_options');
 			?>
 		</div>
-		<div class="">
 
+		<div class="">
 			<?php $i = 0; ?>
 
 			<?php foreach ($sections as $section) : ?>
@@ -66,9 +66,11 @@ $options = get_option('deployeur_options');
 						<h3 class="text-lg font-medium leading-6 !mb-0 text-gray-900">
 							<?= $section['title'] ?>
 						</h3>
-						<p class="mt-1 max-w-2xl text-sm text-gray-500">
-							<?= $section['description'] ?>
-						</p>
+						<?php if (isset($section['description'])) : ?>
+							<p class="mt-1 max-w-2xl text-sm text-gray-500">
+								<?= $section['description'] ?>
+							</p>
+						<?php endif; ?>
 					</div>
 
 					<div class="space-y-6 sm:space-y-5">
