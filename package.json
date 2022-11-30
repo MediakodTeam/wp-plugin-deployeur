@@ -2,7 +2,7 @@
 	"name": "mk-deployeur",
 	"version": "0.1.2",
 	"main": "./assets/scripts/index.ts",
-	"repository": "git@github.com:MediakodTeam/wp-plugin-wp2headless.git",
+	"repository": "git@github.com:MediakodTeam/wp-plugin-deployeur.git",
 	"author": "Logan Blangenois <logan.blangenois@mediakod.com>",
 	"license": "MIT",
 	"scripts": {

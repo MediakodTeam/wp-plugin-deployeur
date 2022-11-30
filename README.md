@@ -26,7 +26,7 @@ This plugin is a simple way to deploy your WordPress website with Webhooks to Ne
 1. Clone the repository
 
 ```bash
-git clone git@github.com:MediakodTeam/wp-plugin-wp2headless.git # using SSH - preferred
+git clone git@github.com:MediakodTeam/wp-plugin-deployeur.git # using SSH - preferred
 ```
 
 2. Install the dependencies
