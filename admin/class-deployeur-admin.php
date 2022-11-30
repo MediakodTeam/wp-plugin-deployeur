@@ -49,6 +49,9 @@ class Deployeur_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->plugin_path = $plugin_path;
 		$this->version = $version;
+
+		add_action('admin_menu', array($this, 'add_admin_menu'));
+		add_action('admin_init', array($this, 'register_options'));
 	}
 
 	/**
@@ -77,5 +80,143 @@ class Deployeur_Admin {
 
 	public function run() {
 		$this->loader->run();
+	}
+
+	/**
+	 * Add the admin menu
+	 * 
+	 * @since 0.1.2
+	 * 
+	 */
+
+	public function add_admin_menu() {
+		add_menu_page(
+			'Deployeur',
+			'Deployeur',
+			'manage_options',
+			'deployeur',
+			array($this, 'display_admin_page'),
+			'dashicons-cloud',
+			2
+		);
+
+		add_submenu_page(
+			'deployeur',
+			'Options',
+			'Options',
+			'manage_options',
+			'deployeur-options',
+			array($this, 'display_admin_page')
+		);
+
+		add_submenu_page(
+			'deployeur',
+			'Logs',
+			'Logs',
+			'manage_options',
+			'deployeur-logs',
+			array($this, 'display_admin_page')
+		);
+	}
+
+	/**
+	 * Display the admin page
+	 * 
+	 * @since 0.1.2
+	 * 
+	 */
+
+	public function display_admin_page() {
+		// Display file on partials
+		require_once $this->plugin_path . '/admin/partials/deployeur-admin-display.php';
+	}
+
+	public function get_options_sections() {
+		return array(
+			array(
+				"id" => "deployeur_section_hosting",
+				"title" => __('Hosting', 'deployeur'),
+				"description" => __('This information is used to connect your WordPress site to your hosting server.', 'deployer'),
+				"icon" => "database"
+			),
+			array(
+				"id" => "deployeur_section_site_options",
+				"title" => __('Site options', 'deployeur'),
+				"description" => __('This information is used to clean your data on the API'),
+				"icon" => "admin-generic"
+			),
+		);
+	}
+
+	public function get_options_fields() {
+		return array(
+			array(
+				"type" => "select",
+				"name" => "deployeur_hostings_type",
+				"title" => __("Type d'hébergement", 'deployeur'),
+				"section" => "deployeur_section_hosting",
+				"options" => array(
+					"none" => __("Aucun", 'deployeur'),
+					"Vercel" => __("Vercel", 'deployeur'),
+					"Netlify" => __("Netlify", 'deployeur'),
+				)
+			),
+			array(
+				"name" => "deployeur_webhook_url",
+				"title" => __("Webhook URL", 'deployeur'),
+				"section" => "deployeur_section_hosting",
+				"note" => __("The badge will only be used for Netlify host.", 'deployeur'),
+			),
+			array(
+				"name" => "deployeur_netlify_badge_url",
+				"title" => __("Netlify badge URL", 'deployeur'),
+				"section" => "deployeur_section_hosting",
+			),
+			array(
+				"name" => "deployeur_public_url",
+				"title" => __("Public URL", 'deployeur'),
+				"section" => "deployeur_section_site_options",
+			),
+			array(
+				"name" => "deployeur_imgkit_url",
+				"title" => __("ImageKit endpoints", 'deployeur'),
+				"section" => "deployeur_section_site_options",
+			)
+		);
+	}
+
+	/**
+	 * Register fields options
+	 * 
+	 * @since 0.1.2
+	 * 
+	 * @return void
+	 */
+
+	public function register_options() {
+		register_setting('deployeur_options', 'deployeur_options');
+
+		foreach ($this->get_options_sections() as $section) {
+			add_settings_section(
+				$section['id'],
+				$section['title'],
+				null,
+				'deployeur_options'
+			);
+		}
+
+
+		foreach ($this->get_options_fields() as $option) {
+			add_settings_field(
+				$option["name"],
+				$option["title"],
+				array(),
+				'deployeur',
+				$option["section"],
+				array(
+					'label_for'         => $option["name"],
+				)
+			);
+		}
 	}
 }
