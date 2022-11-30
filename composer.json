@@ -1,0 +1,23 @@
+{
+	"name": "mediakod/mk-deployeur",
+	"description": "A WordPress plugin that use Webhooks to deploy and make history of your WordPress edition.",
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0+",
+	"version": "0.1.0",
+	"keywords": [
+		"wordpress",
+		"plugin",
+		"tailwind"
+	],
+	"homepage": "https://github.com/MediakodTeam/wp-plugin-wp2headless",
+	"authors": [
+		{
+			"name": "Logan Blangenois",
+			"email": "logan.blangenois@mediakod.com"
+		},
+		{
+			"name": "Thomas Hellin",
+			"email": "thomas.hellin@mediakod.com"
+		}
+	]
+}
