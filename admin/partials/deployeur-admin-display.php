@@ -21,32 +21,18 @@ $options = get_option('deployeur_options');
 	</header>
 
 	<div class="bg-white px-5 pb-2 sm:pb-0 lg:px-12 pt-2 -ml-5">
-		<div class="sm:hidden">
-			<label for="tabs" class="sr-only">Select a tab</label>
-			<!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-			<select id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
-				<?php foreach ($sections as $section) : ?>
-					<option value="<?= $section['id'] ?>"><?= $section['title'] ?></option>
-				<?php endforeach; ?>
-			</select>
-		</div>
+		<nav class="-mb-px flex space-x-8" aria-label="Tabs">
+			<?php $i = 0; ?>
 
-		<div class="hidden sm:block">
-			<div class="">
-				<nav class="-mb-px flex space-x-8" aria-label="Tabs">
-					<?php $i = 0; ?>
+			<?php foreach ($sections as $section) : ?>
+				<button class="<?= $i < 1 ? "border-blue text-blue hover:text-blue" : "text-gray-500 hover:text-gray-700 hover:border-gray-300 border-transparent" ?> group inline-flex items-center no-underline py-4 px-1 border-b-2 font-medium text-sm border-b border-solid border-x-0 border-t-0 bg-transparent cursor-pointer transition" data-mkd-trigger-tabs-id="<?= $section['id'] ?>">
+					<span class="h-5 w-5 dashicons mr-1 dashicons-<?= $section['icon'] ?> border-0"></span>
+					<span><?= $section["title"] ?></span>
+				</button>
 
-					<?php foreach ($sections as $section) : ?>
-						<a href="#" class="<?= $i < 1 ? "border-blue text-blue hover:text-blue" : "text-gray-500 hover:text-gray-700 hover:border-gray-300 border-transparent" ?> group inline-flex items-center no-underline py-4 px-1 border-b-2 font-medium text-sm border-b border-solid border-x-0 border-t-0" data-tabs-id="<?= $section['id'] ?>">
-							<span class="h-5 w-5 dashicons mr-1 dashicons-<?= $section['icon'] ?> border-0"></span>
-							<span><?= $section["title"] ?></span>
-						</a>
-
-						<?php $i++; ?>
-					<?php endforeach; ?>
-				</nav>
-			</div>
-		</div>
+				<?php $i++; ?>
+			<?php endforeach; ?>
+		</nav>
 	</div>
 
 	<form method="POST" action="options.php" class="px-5 lg:px-12 mt-8 -ml-5">
@@ -61,7 +47,7 @@ $options = get_option('deployeur_options');
 			<?php $i = 0; ?>
 
 			<?php foreach ($sections as $section) : ?>
-				<div class="space-y-6 sm:space-y-5">
+				<div class="space-y-6 sm:space-y-5 <?= $i < 1 ? "" : "hidden" ?>" data-mkd-tabs-id="<?= $section['id'] ?>">
 					<div>
 						<h3 class="text-lg font-medium leading-6 !mb-0 text-gray-900">
 							<?= $section['title'] ?>
@@ -74,16 +60,15 @@ $options = get_option('deployeur_options');
 					</div>
 
 					<div class="space-y-6 sm:space-y-5">
-
 						<?php foreach ($fields as $field) : ?>
 							<?php if ($field['section'] == $section['id']) : ?>
 								<?php include('deployeur-admin-fields.php'); ?>
 							<?php endif; ?>
 						<?php endforeach; ?>
-
-
 					</div>
 				</div>
+
+				<?php $i++; ?>
 			<?php endforeach; ?>
 		</div>
 

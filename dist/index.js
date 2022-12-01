@@ -7,7 +7,6 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./assets/styles/main.scss":
@@ -16,6 +15,7 @@
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://mk-deployeur/./assets/styles/main.scss?");
 
 /***/ }),
@@ -26,7 +26,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/main.scss */ \"./assets/styles/main.scss\");\n\n\n\n//# sourceURL=webpack://mk-deployeur/./assets/scripts/index.ts?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/main.scss */ \"./assets/styles/main.scss\");\n/* harmony import */ var _tabs___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs/ */ \"./assets/scripts/tabs/index.ts\");\n/* harmony import */ var _tabs___WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_tabs___WEBPACK_IMPORTED_MODULE_1__);\n// Styles\n\n// Scripts\n\n\n\n//# sourceURL=webpack://mk-deployeur/./assets/scripts/index.ts?");
+
+/***/ }),
+
+/***/ "./assets/scripts/tabs/index.ts":
+/*!**************************************!*\
+  !*** ./assets/scripts/tabs/index.ts ***!
+  \**************************************/
+/***/ (() => {
+
+eval("window.addEventListener(\"load\", function () {\n    var tabsTrigger = document.querySelectorAll(\"button[data-mkd-trigger-tabs-id]\");\n    tabsTrigger === null || tabsTrigger === void 0 ? void 0 : tabsTrigger.forEach(function (tabTrigger) {\n        var tab = document.querySelector(\"[data-mkd-tabs-id=\\\"\".concat(tabTrigger.dataset.mkdTriggerTabsId, \"\\\"]\"));\n        if (tab) {\n            tabTrigger.addEventListener(\"click\", function () {\n                if (tab.classList.contains(\"hidden\")) {\n                    tab.classList.remove(\"hidden\");\n                    tabTrigger.classList.add(\"border-blue\", \"text-blue\");\n                    tabTrigger.classList.remove(\"text-gray-500\", \"hover:text-gray-700\", \"hover:border-gray-300\", \"border-transparent\");\n                    // Close all other tabs\n                    var otherTabs = document.querySelectorAll(\"[data-mkd-tabs-id]:not([data-mkd-tabs-id=\\\"\".concat(tabTrigger.dataset.mkdTriggerTabsId, \"\\\"])\"));\n                    otherTabs === null || otherTabs === void 0 ? void 0 : otherTabs.forEach(function (otherTab) {\n                        otherTab.classList.add(\"hidden\");\n                    });\n                    // Remove active effect on other tabs\n                    var otherTabsTrigger = document.querySelectorAll(\"button[data-mkd-trigger-tabs-id]:not([data-mkd-trigger-tabs-id=\\\"\".concat(tabTrigger.dataset.mkdTriggerTabsId, \"\\\"])\"));\n                    otherTabsTrigger === null || otherTabsTrigger === void 0 ? void 0 : otherTabsTrigger.forEach(function (otherTabTrigger) {\n                        otherTabTrigger.classList.remove(\"border-blue\", \"text-blue\");\n                        otherTabTrigger.classList.add(\"text-gray-500\", \"hover:text-gray-700\", \"hover:border-gray-300\", \"border-transparent\");\n                    });\n                }\n            });\n        }\n    });\n});\n\n\n//# sourceURL=webpack://mk-deployeur/./assets/scripts/tabs/index.ts?");
 
 /***/ })
 
@@ -57,6 +68,35 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
