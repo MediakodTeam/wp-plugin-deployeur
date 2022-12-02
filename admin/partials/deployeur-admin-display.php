@@ -10,7 +10,7 @@ $hasValidWebhook = isset($options['deployeur_webhook_url']) && filter_var($optio
 ?>
 
 
-<div class="relative">
+<div class="relative mkd-wrapper">
 
 	<?php include('includes/deployeur-admin-notices.php'); ?>
 

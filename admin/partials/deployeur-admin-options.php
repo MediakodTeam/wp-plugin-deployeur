@@ -7,7 +7,7 @@ $fields = $this->get_options_fields();
 // Get settings fields registered in options table
 $options = get_option('deployeur_options');
 ?>
-<div class="relative">
+<div class="relative mkd-wrapper">
 
 	<?php include('includes/deployeur-admin-notices.php'); ?>
 

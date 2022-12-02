@@ -1,3 +1,5 @@
+import { Notice } from "../notices";
+
 const defineFetchMethod = (hosting: string): "GET" | "POST" => {
 	switch (hosting) {
 		case "Netlify":
@@ -56,11 +58,11 @@ window.addEventListener("load", async () => {
 		);
 
 		if (webhookResponse.error) {
-			alert("⛔️ " + triggerDeploy.dataset.deployError);
+			new Notice("⛔️ " + triggerDeploy.dataset.deployError, "error");
 		}
 
 		if (webhookResponse.success) {
-			alert("✅ " + triggerDeploy.dataset.deploySuccess);
+			new Notice("✅ " + triggerDeploy.dataset.deploySuccess, "success");
 		}
 	});
 });

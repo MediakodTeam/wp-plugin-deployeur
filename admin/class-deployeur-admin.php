@@ -165,7 +165,7 @@ class Deployeur_Admin {
 			array(
 				"type" => "select",
 				"name" => "deployeur_hostings_type",
-				"title" => __("Type d'hébergement", 'deployeur'),
+				"title" => __("Hosting type", 'deployeur'),
 				"section" => "deployeur_section_hosting",
 				"options" => array(
 					"none" => __("Aucun", 'deployeur'),
@@ -205,7 +205,7 @@ class Deployeur_Admin {
 				"name" => "deployeur_keep",
 				"title" => __("Data", 'deployeur'),
 				"section" => "deployeur_section_plguin_options",
-				"label" => __("Keep the data on plugin deactivation", 'deployeur'),
+				"label" => __("Keep the data on plugin delete", 'deployeur'),
 			)
 		);
 	}
