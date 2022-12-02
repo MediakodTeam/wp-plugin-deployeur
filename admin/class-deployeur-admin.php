@@ -185,6 +185,12 @@ class Deployeur_Admin {
 				"note" => __("The badge will only be used for Netlify host.", 'deployeur'),
 			),
 			array(
+				"name" => "deployeur_average_build_time",
+				"title" => __("Average time of build", 'deployeur'),
+				"section" => "deployeur_section_hosting",
+				"note" => __("The time is used to display to the user that trigger deploy the average time of a build.", 'deployeur'),
+			),
+			array(
 				"name" => "deployeur_public_url",
 				"title" => __("Public URL", 'deployeur'),
 				"section" => "deployeur_section_site_options",
