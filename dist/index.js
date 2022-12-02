@@ -27,7 +27,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/main.scss */ \"./assets/styles/main.scss\");\n/* harmony import */ var _tabs___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs/ */ \"./assets/scripts/tabs/index.ts\");\n/* harmony import */ var _tabs___WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_tabs___WEBPACK_IMPORTED_MODULE_1__);\n// Styles\n\n// Scripts\n\n\n\n//# sourceURL=webpack://mk-deployeur/./assets/scripts/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/main.scss */ \"./assets/styles/main.scss\");\n/* harmony import */ var _tabs___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs/ */ \"./assets/scripts/tabs/index.ts\");\n/* harmony import */ var _tabs___WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_tabs___WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _notices__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./notices */ \"./assets/scripts/notices/index.ts\");\n/* harmony import */ var _notices__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_notices__WEBPACK_IMPORTED_MODULE_2__);\n// Styles\n\n// Scripts\n\n\n\n\n//# sourceURL=webpack://mk-deployeur/./assets/scripts/index.ts?");
+
+/***/ }),
+
+/***/ "./assets/scripts/notices/index.ts":
+/*!*****************************************!*\
+  !*** ./assets/scripts/notices/index.ts ***!
+  \*****************************************/
+/***/ (() => {
+
+eval("window.addEventListener(\"load\", function () {\n    var notices = document.querySelectorAll(\".mkd-notice\");\n    notices === null || notices === void 0 ? void 0 : notices.forEach(function (notice) {\n        var noticeClose = notice.querySelector(\".mkd-notice__close\");\n        noticeClose.addEventListener(\"click\", function () {\n            notice.remove();\n        });\n    });\n});\n\n\n//# sourceURL=webpack://mk-deployeur/./assets/scripts/notices/index.ts?");
 
 /***/ }),
 
