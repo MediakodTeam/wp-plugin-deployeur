@@ -21,7 +21,7 @@ $hasValidWebhook = isset($options['deployeur_webhook_url']) && filter_var($optio
 
 		<h2 class="!text-lg mt-8 md:!text-xl"><?= __('Deploy your site', 'deployeur') ?></h2>
 
-		<button class="<?= $hasValidWebhook ? "!bg-green hover:!bg-green-600 !border-green" : "!bg-gray-500 !border-gray-500 !opacity-50 cursor-not-allowed"  ?> !px-7 !py-2.5 !font-bold !flex items-center !rounded-none  space-x-1 !text-black !text-base  hover:!text-black !transition button button-primary" <?= !$hasValidWebhook ? "disabled='disabled'" : "" ?>>
+		<button id="trigger-deploy" class="<?= $hasValidWebhook ? "!bg-green hover:!bg-green-600 !border-green" : "!bg-gray-500 !border-gray-500 !opacity-50 cursor-not-allowed"  ?> !px-7 !py-2.5 !font-bold !flex items-center !rounded-none  space-x-1 !text-black !text-base  hover:!text-black !transition button button-primary" <?= !$hasValidWebhook ? "disabled='disabled'" : "" ?> data-deploy-webhook="<?= $options['deployeur_webhook_url'] ?>" data-deploy-hosting="<?= $options['deployeur_hostings_type'] ?>" data-deploy-success="<?= sprintf(__("You're build is in progress ! The average time of a build is %s.", "deployeur"), $options['deployeur_average_build_time']) ?> " data-deploy-error="<?= __(" The deploy has failed, please be sure to have correctly set your webhook URL.", "deployeur") ?>">
 			<span class="dashicons dashicons-cloud-upload"></span>
 			<span><?= __('Deploy', 'deployeur') ?></span>
 		</button>
