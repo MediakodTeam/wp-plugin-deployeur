@@ -102,17 +102,19 @@ class Deployeur_Admin {
 
 		add_submenu_page(
 			'deployeur',
-			'Options',
-			'Options',
+			__('Settings', 'deployeur'),
+			__('Settings', 'deployeur'),
 			'manage_options',
 			'deployeur-options',
-			array($this, 'display_admin_page')
+			function () {
+				$this->display_admin_page('options');
+			}
 		);
 
 		add_submenu_page(
 			'deployeur',
-			'Logs',
-			'Logs',
+			__('Logs', 'deployeur'),
+			__('Logs', 'deployeur'),
 			'manage_options',
 			'deployeur-logs',
 			array($this, 'display_admin_page')
@@ -126,9 +128,14 @@ class Deployeur_Admin {
 	 * 
 	 */
 
-	public function display_admin_page() {
-		// Display file on partials
-		require_once $this->plugin_path . '/admin/partials/deployeur-admin-display.php';
+	public function display_admin_page($page) {
+		switch ($page) {
+			case 'options':
+				require_once $this->plugin_path . '/admin/partials/deployeur-admin-options.php';
+				break;
+			default:
+				require_once $this->plugin_path . '/admin/partials/deployeur-admin-display.php';
+		}
 	}
 
 	public function get_options_sections() {
@@ -170,12 +177,12 @@ class Deployeur_Admin {
 				"name" => "deployeur_webhook_url",
 				"title" => __("Webhook URL", 'deployeur'),
 				"section" => "deployeur_section_hosting",
-				"note" => __("The badge will only be used for Netlify host.", 'deployeur'),
 			),
 			array(
 				"name" => "deployeur_netlify_badge_url",
 				"title" => __("Netlify badge URL", 'deployeur'),
 				"section" => "deployeur_section_hosting",
+				"note" => __("The badge will only be used for Netlify host.", 'deployeur'),
 			),
 			array(
 				"name" => "deployeur_public_url",
