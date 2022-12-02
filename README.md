@@ -1,8 +1,16 @@
-# 🚀 Welcome to the Deployeur plugins !
+# 🚀 The Deployeur, a plugin to use WordPress as a headless CMS!
 
 ## 📖 Description
 
-This plugin is a simple way to deploy your WordPress website with Webhooks to Netlify or Vercel like hosting.
+This plugin is not only a simple way to deploy your WordPress website to Netlify or Vercel hosting using Webhooks.
+It also empowers WordPress with features that allow users to launch a deploy only when they are ready to.
+
+Indeed, static site generation often come with benefits of better security, better speed and lower carbon footprint.
+So far we had only seen solutions that triggered a deploy each time a post was published or updated by a user.
+Triggering multiple builds in a row wasn't really consistent with the spirit of designing environmentally friendly websites.
+
+That is why we started The Deployeur's adventure!
+
 
 ## 📦 Installation
 
