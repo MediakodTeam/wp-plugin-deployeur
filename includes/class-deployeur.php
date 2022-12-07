@@ -65,6 +65,8 @@ class Deployeur {
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
+
+		$this->init_ajax();
 	}
 
 	/**
@@ -115,7 +117,6 @@ class Deployeur {
 	 * @access   private
 	 */
 	private function set_locale() {
-
 		$plugin_i18n = new Deployeur_i18n();
 
 		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
@@ -134,6 +135,18 @@ class Deployeur {
 
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
+	}
+
+	/**
+	 * Register all of the ajax related to the admin area functionality
+	 * 
+	 * @since 0.2.2
+	 * 
+	 */
+	private function init_ajax() {
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-deployeur-ajax.php';
+
+		new Deployeur_Ajax();
 	}
 
 	/**

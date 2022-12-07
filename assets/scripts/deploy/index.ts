@@ -72,21 +72,39 @@ window.addEventListener("load", async () => {
 		type: "error",
 	});
 
+	const ajaxURL = triggerDeploy.dataset.ajaxUrl as string;
+
 	triggerDeploy.addEventListener("click", async () => {
 		modalLoading.showModal();
 
-		const webhookResponse = await fetchWebhooks(
-			triggerDeploy.dataset.deployWebhook as string,
-			defineFetchMethod(triggerDeploy.dataset.deployHosting as string)
-		);
+		// const webhookResponse = await fetchWebhooks(
+		// 	triggerDeploy.dataset.deployWebhook as string,
+		// 	defineFetchMethod(triggerDeploy.dataset.deployHosting as string)
+		// );
+		console.log(ajaxURL);
+
+		const data = {
+			action: "mkd_log_history",
+		};
+
+		const rest = await fetch(ajaxURL, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+				"Cache-Control": "no-cache",
+			},
+			body: new URLSearchParams(data),
+		});
+
+		console.log(rest);
 
 		modalLoading.hideModal();
 
-		if (webhookResponse.error) {
-			modalError.showModal();
-		}
-		if (webhookResponse.success) {
-			modalSuccess.showModal();
-		}
+		// if (webhookResponse.error) {
+		// 	modalError.showModal();
+		// }
+		// if (webhookResponse.success) {
+		// 	modalSuccess.showModal();
+		// }
 	});
 });
