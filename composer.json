@@ -3,7 +3,7 @@
 	"description": "A WordPress plugin that use Webhooks to deploy and make history of your WordPress edition.",
 	"type": "wordpress-plugin",
 	"license": "GPL-3.0+",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"keywords": [
 		"wordpress",
 		"plugin",
