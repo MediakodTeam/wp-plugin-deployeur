@@ -22,6 +22,18 @@ if (!defined('WPINC')) {
 define('MKD_VERSION', '0.1.2');
 
 /**
+ * The code that runs during plugin activation.
+ * This action is documented in includes/class-deployeur-activator.php
+ */
+function activate_deployeur()
+{
+	require_once plugin_dir_path(__FILE__) . 'includes/class-deployeur-activator.php';
+	Deployeur_Activator::activate();
+}
+
+register_activation_hook(__FILE__, 'activate_deployeur');
+
+/**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
@@ -37,7 +49,8 @@ require plugin_dir_path(__FILE__) . 'includes/class-deployeur.php';
  *
  * @since    1.0.0
  */
-function run_deployeur() {
+function run_deployeur()
+{
 
 	$plugin = new Deployeur();
 	$plugin->run();
