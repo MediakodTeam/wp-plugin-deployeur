@@ -31,7 +31,20 @@ function activate_deployeur()
 	Deployeur_Activator::activate();
 }
 
+/**
+ * The code that runs during plugin deletion.
+ * This action is documented in includes/class-deployeur-desactivator.php
+ */
+function delete_deployeur()
+{
+	require_once plugin_dir_path(__FILE__) . 'includes/class-deployeur-desactivator.php';
+	Deployeur_Deactivator::uninstall();
+}
+
 register_activation_hook(__FILE__, 'activate_deployeur');
+// TODO : at release -> comment register_deactivation_hook and uncomment register_uninstall_hook
+register_deactivation_hook(__FILE__, 'delete_deployeur');
+// register_uninstall_hook(__FILE__, 'delete_deployeur');
 
 /**
  * The core plugin class that is used to define internationalization,
