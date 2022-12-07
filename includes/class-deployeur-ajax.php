@@ -8,6 +8,24 @@ class Deployeur_Ajax {
 	}
 
 	public function mkd_log_history() {
-		error_log(print_r("Hello world", true));
+		if (!isset($_POST['status']) || !isset($_POST['webhooks'])) {
+			return wp_send_json_error();
+		}
+
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'deployeur_history';
+
+		$wpdb->insert(
+			$table_name,
+			array(
+				'date' => current_time('mysql'),
+				'user_id' => get_current_user_id(),
+				'status' => $_POST['status'],
+				'webhooks' => $_POST['webhooks'],
+			)
+		);
+
+		return wp_send_json_success();
 	}
 }

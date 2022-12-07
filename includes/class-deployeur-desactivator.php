@@ -3,7 +3,7 @@
 /**
  * Fired during plugin deactivation
  *
- * @since      0.1.2
+ * @since      0.2.2
  *
  * @package    Deployeur
  * @subpackage Deployeur/includes
@@ -16,7 +16,7 @@ class Deployeur_Deactivator {
    *
    * Long Description.
    *
-   * @since    0.1.2
+   * @since  0.2.2
    */
   public static function uninstall() {
     $options = get_option('deployeur_options');

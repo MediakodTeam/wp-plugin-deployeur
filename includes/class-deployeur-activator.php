@@ -3,7 +3,7 @@
 /**
  * Fired during plugin activation
  *
- * @since      0.1.2
+ * @since      0.2.2
  *
  * @package    Deployeur
  * @subpackage Deployeur/includes

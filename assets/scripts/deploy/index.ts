@@ -77,17 +77,19 @@ window.addEventListener("load", async () => {
 	triggerDeploy.addEventListener("click", async () => {
 		modalLoading.showModal();
 
-		// const webhookResponse = await fetchWebhooks(
-		// 	triggerDeploy.dataset.deployWebhook as string,
-		// 	defineFetchMethod(triggerDeploy.dataset.deployHosting as string)
-		// );
-		console.log(ajaxURL);
+		const webhookResponse = await fetchWebhooks(
+			triggerDeploy.dataset.deployWebhook as string,
+			defineFetchMethod(triggerDeploy.dataset.deployHosting as string)
+		);
 
 		const data = {
 			action: "mkd_log_history",
+			status: webhookResponse.success ? "success" : "error",
+			webhooks: triggerDeploy.dataset.deployWebhook as string,
 		};
 
-		const rest = await fetch(ajaxURL, {
+		// Log deploy trigger into db
+		await fetch(ajaxURL, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/x-www-form-urlencoded",
@@ -96,15 +98,13 @@ window.addEventListener("load", async () => {
 			body: new URLSearchParams(data),
 		});
 
-		console.log(rest);
-
 		modalLoading.hideModal();
 
-		// if (webhookResponse.error) {
-		// 	modalError.showModal();
-		// }
-		// if (webhookResponse.success) {
-		// 	modalSuccess.showModal();
-		// }
+		if (webhookResponse.error) {
+			modalError.showModal();
+		}
+		if (webhookResponse.success) {
+			modalSuccess.showModal();
+		}
 	});
 });
