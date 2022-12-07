@@ -35,18 +35,19 @@ class Deployeur_i18n {
 	/**
 	 * Insert to admin a div element with a data attribute
 	 * 
-	 * @since 0.1.3
+	 * @since 0.2.1
 	 * 
 	 */
 	public function insert_translations_key() {
 		// Insert data attribute
 		echo '<ul id="mkd-translations" class="hidden">
-			<li id="mkd-success">' . __('Success') . '</li>
-			<li id="mkd-error">' . __('Failure') . '</li>
+			<li id="success">' . __('Success') . '</li>
+			<li id="error">' . __('Failure') . '</li>
 			<li id="confirm">' . __('Confirm') . '</li>
-			<li id="mkd-deploy-success">' . sprintf(__("You're build is in progress ! The average time of a build is %s.", "deployeur"), get_option('deployeur_options')['deployeur_average_build_time']) . '</li>
-			<li id="mkd-deploy-error">' . __(" The deploy has failed, please be sure to have correctly set your webhook URL.", "deployeur") . '</li>
-
+			<li id="deploy-success">' . sprintf(__("You're build is in progress ! The average time of a build is %s.", "deployeur"), get_option('deployeur_options')['deployeur_average_build_time']) . '</li>
+			<li id="deploy-error">' . __("The deploy has failed, please be sure to have correctly set your webhook URL.", "deployeur") . '</li>
+			<li id="loading">' . __("Loading") . '</li>
+			<li id="deploy-loading">' . __("The deploy is in progress, please wait a few seconds before trying again. If the problem persists, please contact your administrator.", "deployeur") . '</li>
 		</ul>';
 	}
 }

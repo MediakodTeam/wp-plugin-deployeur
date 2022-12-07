@@ -53,23 +53,34 @@ window.addEventListener("load", async () => {
 		return;
 	}
 
+	const modalLoading = new Modal({
+		title: getTranslations("loading"),
+		content: getTranslations("deploy-loading"),
+		type: "info",
+		hideConfirmButton: true,
+	});
+
 	const modalSuccess = new Modal({
-		title: getTranslations("mkd-success"),
-		content: getTranslations("mkd-deploy-success"),
+		title: getTranslations("success"),
+		content: getTranslations("deploy-success"),
 		type: "success",
 	});
 
 	const modalError = new Modal({
-		title: getTranslations("mkd-error"),
-		content: getTranslations("mkd-deploy-error"),
+		title: getTranslations("error"),
+		content: getTranslations("deploy-error"),
 		type: "error",
 	});
 
 	triggerDeploy.addEventListener("click", async () => {
+		modalLoading.showModal();
+
 		const webhookResponse = await fetchWebhooks(
 			triggerDeploy.dataset.deployWebhook as string,
 			defineFetchMethod(triggerDeploy.dataset.deployHosting as string)
 		);
+
+		modalLoading.hideModal();
 
 		if (webhookResponse.error) {
 			modalError.showModal();

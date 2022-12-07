@@ -5,6 +5,7 @@ type ModalOptions = {
 	content: string;
 	type?: string;
 	confirmLabelKey?: string;
+	hideConfirmButton?: boolean;
 };
 
 export class Modal {
@@ -15,7 +16,13 @@ export class Modal {
 	modalId: string;
 
 	constructor(
-		{ title, content, type, confirmLabelKey }: ModalOptions,
+		{
+			title,
+			content,
+			type,
+			confirmLabelKey,
+			hideConfirmButton = false,
+		}: ModalOptions,
 		onConfirm = () => {}
 	) {
 		this.options = {
@@ -23,6 +30,7 @@ export class Modal {
 			content,
 			type,
 			confirmLabelKey,
+			hideConfirmButton,
 		};
 		this.onConfirm = onConfirm;
 		this.modalId = `mkd-modal-${Math.floor(Math.random() * 1000)}`;
@@ -81,7 +89,7 @@ export class Modal {
 				? "bg-green-100"
 				: this.options.type == "error"
 				? "bg-red-100"
-				: "bg-blue-50"
+				: "bg-blue-50 bg-opacity-50"
 		}">
 
 			${
@@ -100,6 +108,15 @@ export class Modal {
 			 `
 					: ""
 			}
+
+			${
+				this.options.type == "info"
+					? `<svg class="h-6 w-6 text-blue" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+	 </svg>
+	 `
+					: ""
+			}
       </i>
 
       <div class="mt-3 text-center sm:mt-5">
@@ -112,31 +129,32 @@ export class Modal {
       </div>
     </div>`;
 
-		//  mt-5 inline-flex w-full justify-center !bg-blue-500 !px-4 !py-2 !text-base !text-white hover:!bg-blue-600 hover:!text-white
-		this.confirmButton = document.createElement("button");
-		this.confirmButton.classList.add(
-			"mt-5",
-			"inline-flex",
-			"w-full",
-			"justify-center",
-			"!border-none",
-			"!bg-blue-500",
-			"!px-4",
-			"!py-2",
-			"!text-base",
-			"!text-white",
-			"hover:!bg-blue-600",
-			"hover:!text-white",
-			"!cursor-pointer"
-		);
+		if (!this.options.hideConfirmButton) {
+			this.confirmButton = document.createElement("button");
+			this.confirmButton.classList.add(
+				"mt-5",
+				"inline-flex",
+				"w-full",
+				"justify-center",
+				"!border-none",
+				"!bg-blue-500",
+				"!px-4",
+				"!py-2",
+				"!text-base",
+				"!text-white",
+				"hover:!bg-blue-600",
+				"hover:!text-white",
+				"!cursor-pointer"
+			);
 
-		this.confirmButton.innerHTML = getTranslations(
-			this.options.confirmLabelKey ?? "confirm"
-		);
+			this.confirmButton.innerHTML = getTranslations(
+				this.options.confirmLabelKey ?? "confirm"
+			);
 
-		this.handleConfirm();
+			this.handleConfirm();
 
-		modalWrapper.appendChild(this.confirmButton);
+			modalWrapper.appendChild(this.confirmButton);
+		}
 
 		modal.appendChild(modalOverlay);
 		modal.appendChild(modalWrapper);
