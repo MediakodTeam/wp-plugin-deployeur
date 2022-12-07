@@ -21,15 +21,13 @@ class Deployeur_Deactivator
    */
   public static function uninstall()
   {
-
     $options = get_option('deployeur_options');
-
-    if (is_array($options) && !isset($options['deployeur_keep'])) {
+    if (!isset($options['deployeur_keep'])) {
       global $wpdb;
       $table_name = $wpdb->prefix . 'deployeur';
       $sql = "DROP TABLE IF EXISTS $table_name";
       $wpdb->query($sql);
-      // delete_option("wporg_options");
+      delete_option("deployeur_options");
     }
   }
 }

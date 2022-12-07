@@ -25,7 +25,9 @@ class Deployeur_Activator
 
     $sql = "CREATE TABLE $table_name (
       id mediumint(9) NOT NULL AUTO_INCREMENT,
-      time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+      date datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+      user_id mediumint(9) NOT NULL,
+      status varchar(20) NOT NULL,
       UNIQUE KEY id (id)
     ) $charset_collate;";
 
