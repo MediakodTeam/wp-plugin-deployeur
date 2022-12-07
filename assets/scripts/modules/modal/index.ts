@@ -55,6 +55,8 @@ export class Modal {
 			"opacity-50"
 		);
 
+		modalOverlay.addEventListener("click", () => this.hideModal());
+
 		const modalWrapper = document.createElement("div");
 		modalWrapper.classList.add(
 			"relative",

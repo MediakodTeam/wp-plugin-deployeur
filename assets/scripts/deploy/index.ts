@@ -1,4 +1,6 @@
-import { Notice } from "../notices";
+import { getTranslations } from "../helpers/i18n";
+import { Modal } from "../modules/modal";
+import { Notice } from "../modules/notices";
 
 const defineFetchMethod = (hosting: string): "GET" | "POST" => {
 	switch (hosting) {
@@ -51,6 +53,18 @@ window.addEventListener("load", async () => {
 		return;
 	}
 
+	const modalSuccess = new Modal({
+		title: getTranslations("mkd-success"),
+		content: getTranslations("mkd-deploy-success"),
+		type: "success",
+	});
+
+	const modalError = new Modal({
+		title: getTranslations("mkd-error"),
+		content: getTranslations("mkd-deploy-error"),
+		type: "error",
+	});
+
 	triggerDeploy.addEventListener("click", async () => {
 		const webhookResponse = await fetchWebhooks(
 			triggerDeploy.dataset.deployWebhook as string,
@@ -58,11 +72,10 @@ window.addEventListener("load", async () => {
 		);
 
 		if (webhookResponse.error) {
-			new Notice("⛔️ " + triggerDeploy.dataset.deployError, "error");
+			modalError.showModal();
 		}
-
 		if (webhookResponse.success) {
-			new Notice("✅ " + triggerDeploy.dataset.deploySuccess, "success");
+			modalSuccess.showModal();
 		}
 	});
 });

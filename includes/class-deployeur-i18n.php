@@ -28,5 +28,25 @@ class Deployeur_i18n {
 			false,
 			dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
 		);
+
+		$this->insert_translations_key();
+	}
+
+	/**
+	 * Insert to admin a div element with a data attribute
+	 * 
+	 * @since 0.1.3
+	 * 
+	 */
+	public function insert_translations_key() {
+		// Insert data attribute
+		echo '<ul id="mkd-translations" class="hidden">
+			<li id="mkd-success">' . __('Success') . '</li>
+			<li id="mkd-error">' . __('Failure') . '</li>
+			<li id="confirm">' . __('Confirm') . '</li>
+			<li id="mkd-deploy-success">' . sprintf(__("You're build is in progress ! The average time of a build is %s.", "deployeur"), get_option('deployeur_options')['deployeur_average_build_time']) . '</li>
+			<li id="mkd-deploy-error">' . __(" The deploy has failed, please be sure to have correctly set your webhook URL.", "deployeur") . '</li>
+
+		</ul>';
 	}
 }

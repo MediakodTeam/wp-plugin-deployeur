@@ -1,8 +1,6 @@
 <?php
 
 $options = get_option('deployeur_options');
-var_dump($options);
-
 
 // Check if there's option `deployeur_webhook_url` and if it's an URL
 $hasValidWebhook = isset($options['deployeur_webhook_url']) && filter_var($options['deployeur_webhook_url'], FILTER_VALIDATE_URL);
