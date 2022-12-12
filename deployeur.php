@@ -19,14 +19,13 @@ if (!defined('WPINC')) {
 	die;
 }
 
-define('MKD_VERSION', '0.2.1');
+define('MKD_VERSION', '0.2.2');
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-deployeur-activator.php
  */
-function activate_deployeur()
-{
+function activate_deployeur() {
 	require_once plugin_dir_path(__FILE__) . 'includes/class-deployeur-activator.php';
 	Deployeur_Activator::activate();
 }
@@ -35,8 +34,7 @@ function activate_deployeur()
  * The code that runs during plugin deletion.
  * This action is documented in includes/class-deployeur-desactivator.php
  */
-function delete_deployeur()
-{
+function delete_deployeur() {
 	require_once plugin_dir_path(__FILE__) . 'includes/class-deployeur-desactivator.php';
 	Deployeur_Deactivator::uninstall();
 }
@@ -62,8 +60,7 @@ require plugin_dir_path(__FILE__) . 'includes/class-deployeur.php';
  *
  * @since    1.0.0
  */
-function run_deployeur()
-{
+function run_deployeur() {
 
 	$plugin = new Deployeur();
 	$plugin->run();

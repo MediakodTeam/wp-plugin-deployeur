@@ -1,6 +1,6 @@
 {
 	"name": "mk-deployeur",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"main": "./assets/scripts/index.ts",
 	"repository": "git@github.com:MediakodTeam/wp-plugin-deployeur.git",
 	"author": "Logan Blangenois <logan.blangenois@mediakod.com>",
