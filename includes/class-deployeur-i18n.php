@@ -28,7 +28,7 @@ class Deployeur_i18n {
 			dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
 		);
 
-		$this->insert_translations_key();
+		add_action('admin_init', array($this, 'insert_translations_key'));
 	}
 
 	/**
