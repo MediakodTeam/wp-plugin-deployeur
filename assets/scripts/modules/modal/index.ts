@@ -5,13 +5,17 @@ type ModalOptions = {
 	content: string;
 	type?: string;
 	confirmLabelKey?: string;
+	cancelLabelKey?: string;
 	hideConfirmButton?: boolean;
 };
 
+type OnCancelCallback = () => void | Promise<void>;
 export class Modal {
 	options: ModalOptions;
 	onConfirm: () => void;
+	onCancel: OnCancelCallback | boolean;
 	confirmButton: HTMLButtonElement;
+	cancelButton: HTMLButtonElement;
 	modal: HTMLDivElement;
 	modalId: string;
 
@@ -21,18 +25,23 @@ export class Modal {
 			content,
 			type,
 			confirmLabelKey,
+			cancelLabelKey,
 			hideConfirmButton = false,
 		}: ModalOptions,
-		onConfirm = () => {}
+		onConfirm = () => {},
+		onCancel?: OnCancelCallback | boolean
 	) {
 		this.options = {
 			title,
 			content,
 			type,
 			confirmLabelKey,
+			cancelLabelKey,
 			hideConfirmButton,
 		};
+
 		this.onConfirm = onConfirm;
+		this.onCancel = onCancel;
 		this.modalId = `mkd-modal-${Math.floor(Math.random() * 1000)}`;
 
 		this.createModal();
@@ -130,10 +139,44 @@ export class Modal {
     </div>`;
 
 		if (!this.options.hideConfirmButton) {
+			const buttonWrapper = document.createElement("div");
+			buttonWrapper.classList.add(
+				"mt-5",
+				"sm:mt-6",
+				"flex",
+				"flex-col",
+				"gap-2"
+			);
+
+			if (this.onCancel) {
+				this.cancelButton = document.createElement("button");
+				this.cancelButton.classList.add(
+					"flex",
+					"w-full",
+					"justify-center",
+					"!border-none",
+					"!bg-gray-200",
+					"!px-4",
+					"!py-2",
+					"!text-base",
+					"!text-gray-700",
+					"hover:!bg-gray-300",
+					"hover:!text-gray-700",
+					"!cursor-pointer"
+				);
+
+				this.cancelButton.innerHTML = getTranslations(
+					this.options.cancelLabelKey ?? "cancel"
+				);
+
+				this.handleCancel();
+
+				buttonWrapper.appendChild(this.cancelButton);
+			}
+
 			this.confirmButton = document.createElement("button");
 			this.confirmButton.classList.add(
-				"mt-5",
-				"inline-flex",
+				"flex",
 				"w-full",
 				"justify-center",
 				"!border-none",
@@ -153,7 +196,9 @@ export class Modal {
 
 			this.handleConfirm();
 
-			modalWrapper.appendChild(this.confirmButton);
+			buttonWrapper.appendChild(this.confirmButton);
+
+			modalWrapper.appendChild(buttonWrapper);
 		}
 
 		modal.appendChild(modalOverlay);
@@ -168,6 +213,16 @@ export class Modal {
 	handleConfirm() {
 		this.confirmButton.addEventListener("click", () => {
 			this.onConfirm();
+			this.hideModal();
+		});
+	}
+
+	handleCancel() {
+		this.cancelButton.addEventListener("click", () => {
+			if (this.onCancel && typeof this.onCancel === "function") {
+				this.onCancel();
+			}
+
 			this.hideModal();
 		});
 	}

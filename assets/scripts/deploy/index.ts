@@ -46,7 +46,8 @@ const fetchWebhooks = async (
 	return response;
 };
 
-window.addEventListener("load", async () => {
+const handleDeployTrigger = () => {
+	// Handle deploy button
 	const triggerDeploy = document.getElementById("trigger-deploy");
 
 	if (!triggerDeploy) {
@@ -107,4 +108,52 @@ window.addEventListener("load", async () => {
 			modalSuccess.showModal();
 		}
 	});
+};
+
+const handleClearHistory = () => {
+	// Handle clear history
+	const clearHistory = document.getElementById("clear-history");
+
+	if (!clearHistory) {
+		return;
+	}
+
+	const modalConfirmClear = new Modal(
+		{
+			title: getTranslations("confirm-clear"),
+			content: getTranslations("confirm-clear-content"),
+			type: "warning",
+		},
+		async () => {
+			console.log("Clear history now");
+
+			const ajaxURL = clearHistory.dataset.ajaxUrl as string;
+
+			const data = {
+				action: "mkd_clear_history",
+			};
+
+			await fetch(ajaxURL, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+					"Cache-Control": "no-cache",
+				},
+				body: new URLSearchParams(data),
+			});
+
+			// Reload the page
+			window.location.reload();
+		},
+		() => {}
+	);
+
+	clearHistory.addEventListener("click", () => {
+		modalConfirmClear.showModal();
+	});
+};
+
+window.addEventListener("load", async () => {
+	handleDeployTrigger();
+	handleClearHistory();
 });
