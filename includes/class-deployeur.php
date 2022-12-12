@@ -196,6 +196,6 @@ class Deployeur {
 	 * @return string
 	 */
 	public function get_plugin_path() {
-		return WP_PLUGIN_DIR . '/mk-deployeur';
+		return plugin_dir_path(dirname(__FILE__));
 	}
 }
