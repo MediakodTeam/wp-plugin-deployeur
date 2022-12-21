@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Deployeur
- * Description: A WordPress plugin that use Webhooks to deploy and make history of your WordPress edition.
+ * Description: A WordPress plugin that uses Webhooks to deploy and make history of your WordPress edition.
  * Plugin URI:  https://mediakod.com
  * Author:      Mediakod
  * Author URI:  https://mediakod.com
