@@ -16,7 +16,9 @@ That is why we started the Deployeur's adventure!
 
 1. Upload the plugin files to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Go to the Deployeur Section
+3. Go to the Deployeur settings page
+4. Select your hosting provider and set your webhook URL
+5. (Up next) Go to the Site settings tab and enter your front-end domain name into the public URL field
 
 ## 📝 Changelog
 
