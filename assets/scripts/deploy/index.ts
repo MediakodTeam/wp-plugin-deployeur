@@ -48,9 +48,9 @@ const fetchWebhooks = async (
 
 const handleDeployTrigger = () => {
 	// Handle deploy button
-	const triggerDeploy = document.getElementById("trigger-deploy");
+	const triggersDeploy = document.querySelectorAll("#trigger-deploy");
 
-	if (!triggerDeploy) {
+	if (!triggersDeploy || triggersDeploy.length === 0) {
 		return;
 	}
 
@@ -72,41 +72,43 @@ const handleDeployTrigger = () => {
 		content: getTranslations("deploy-error"),
 		type: "error",
 	});
+	const ajaxURL = (triggersDeploy[0] as HTMLButtonElement).dataset
+		.ajaxUrl as string;
 
-	const ajaxURL = triggerDeploy.dataset.ajaxUrl as string;
+	triggersDeploy.forEach((triggerDeploy: HTMLButtonElement) => {
+		triggerDeploy.addEventListener("click", async () => {
+			modalLoading.showModal();
 
-	triggerDeploy.addEventListener("click", async () => {
-		modalLoading.showModal();
+			const webhookResponse = await fetchWebhooks(
+				triggerDeploy.dataset.deployWebhook as string,
+				defineFetchMethod(triggerDeploy.dataset.deployHosting as string)
+			);
 
-		const webhookResponse = await fetchWebhooks(
-			triggerDeploy.dataset.deployWebhook as string,
-			defineFetchMethod(triggerDeploy.dataset.deployHosting as string)
-		);
+			const data = {
+				action: "mkd_log_history",
+				status: webhookResponse.success ? "success" : "error",
+				webhooks: triggerDeploy.dataset.deployWebhook as string,
+			};
 
-		const data = {
-			action: "mkd_log_history",
-			status: webhookResponse.success ? "success" : "error",
-			webhooks: triggerDeploy.dataset.deployWebhook as string,
-		};
+			// Log deploy trigger into db
+			await fetch(ajaxURL, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+					"Cache-Control": "no-cache",
+				},
+				body: new URLSearchParams(data),
+			});
 
-		// Log deploy trigger into db
-		await fetch(ajaxURL, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/x-www-form-urlencoded",
-				"Cache-Control": "no-cache",
-			},
-			body: new URLSearchParams(data),
+			modalLoading.hideModal();
+
+			if (webhookResponse.error) {
+				modalError.showModal();
+			}
+			if (webhookResponse.success) {
+				modalSuccess.showModal();
+			}
 		});
-
-		modalLoading.hideModal();
-
-		if (webhookResponse.error) {
-			modalError.showModal();
-		}
-		if (webhookResponse.success) {
-			modalSuccess.showModal();
-		}
 	});
 };
 

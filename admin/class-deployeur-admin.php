@@ -156,10 +156,11 @@ class Deployeur_Admin {
 			'meta' => array(
 				'title' => __('Deployeur', 'deployeur'),
 				'class' => 'deployeur',
-				'html' => "<span id='trigger-deploy' style='position: absolute; inset: 0; opacity: 0; cursor: pointer' data-deploy-webhook='" . (is_array($options) ? $options['deployeur_webhook_url'] : '') . "'></span>"
+				'html' => "<span id='trigger-deploy' style='position: absolute; inset: 0; opacity: 0; cursor: pointer' data-deploy-webhook='" . (is_array($options) ? $options['deployeur_webhook_url'] : '') . "' data-deploy-hosting='" . $options['deployeur_hostings_type'] . "'  data-deploy-success='" . sprintf(__('You&apos;re build is in progress ! The average time of a build is %s.', 'deployeur'), is_array($options) ? $options['deployeur_average_build_time'] : '') . "' data-deploy-error='" . __("The deploy has failed, please be sure to have correctly set your webhook URL.", "deployeur") . "' data-ajax-url='" . admin_url('admin-ajax.php') . "'></span>"
 			)
 		));
 	}
+
 
 
 	/**
