@@ -51,6 +51,7 @@ class Deployeur_Admin {
 		$this->version = $version;
 
 		add_action('admin_menu', array($this, 'add_admin_menu'));
+		add_action('admin_bar_menu', array($this, 'add_admin_topbar_item'), 1000);
 		add_action('admin_init', array($this, 'register_options'));
 	}
 
@@ -97,7 +98,7 @@ class Deployeur_Admin {
 			'deployeur',
 			array($this, 'display_admin_page'),
 			'dashicons-cloud',
-			2
+			99
 		);
 
 		add_submenu_page(
@@ -120,6 +121,46 @@ class Deployeur_Admin {
 			array($this, 'display_admin_page')
 		);
 	}
+
+	/**
+	 * Add admin topbar item
+	 * 
+	 * @since 0.2.3
+	 * 
+	 */
+
+	public function add_admin_topbar_item() {
+		global $wp_admin_bar;
+
+		// add items before "My account" on wp admin bar
+		$wp_admin_bar->add_node(array(
+			'id' => 'deploy-status',
+			'title' => __('Status', 'deployeur'),
+			'href' => "#",
+			'parent' => 'top-secondary',
+			'meta' => array(
+				'title' => __('Deployeur', 'deployeur'),
+				'class' => 'deployeur',
+				'html' => "<span style='position: absolute; inset: 0; opacity: 0; cursor: not-allowed'></span>"
+			)
+		));
+
+		$options = get_option('deployeur_options');
+
+		// add items before "My account" on wp admin bar
+		$wp_admin_bar->add_node(array(
+			'id' => 'trigger-deploy',
+			'title' => '<span class="ab-icon dashicons dashicons-cloud" style="top: 2px"></span>' . __('Deploy now', 'deployeur'),
+			'href' => "#",
+			'parent' => 'top-secondary',
+			'meta' => array(
+				'title' => __('Deployeur', 'deployeur'),
+				'class' => 'deployeur',
+				'html' => "<span id='trigger-deploy' style='position: absolute; inset: 0; opacity: 0; cursor: pointer' data-deploy-webhook='" . (is_array($options) ? $options['deployeur_webhook_url'] : '') . "'></span>"
+			)
+		));
+	}
+
 
 	/**
 	 * Display the admin page
