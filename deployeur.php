@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Deployeur
- * Description: A WordPress plugin that uses Webhooks to deploy and make history of your WordPress edition.
+ * Description: Use WordPress as a headless CMS. Stop triggering rebuilds whenever changes are made in your admin dashboard. Review your change history and deploy your contents using webhooks from Netlify or Vercel.
  * Plugin URI:  https://mediakod.com
  * Author:      Mediakod
  * Author URI:  https://mediakod.com

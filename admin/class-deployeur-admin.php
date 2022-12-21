@@ -183,8 +183,8 @@ class Deployeur_Admin {
 		return array(
 			array(
 				"id" => "deployeur_section_hosting",
-				"title" => __('Hosting', 'deployeur'),
-				"description" => __('This information is used to connect your WordPress site to your hosting server.', 'deployer'),
+				"title" => __('Hosting settings', 'deployeur'),
+				"description" => __('Those informations are used to connect your WordPress installation to your hosting provider.', 'deployer'),
 				"icon" => "database"
 			),
 			array(
@@ -194,7 +194,12 @@ class Deployeur_Admin {
 				"icon" => "admin-settings"
 			),
 			array(
-				"id" => "deployeur_section_plguin_options",
+				"id" => "deployeur_section_images_options",
+				"title" => __('Images settings', 'deployeur'),
+				"icon" => "format-gallery"
+			),
+			array(
+				"id" => "deployeur_section_plugin_options",
 				"title" => __('Plugin settings', 'deployeur'),
 				"icon" => "admin-generic"
 			),
@@ -206,10 +211,10 @@ class Deployeur_Admin {
 			array(
 				"type" => "select",
 				"name" => "deployeur_hostings_type",
-				"title" => __("Hosting type", 'deployeur'),
+				"title" => __("Hosting provider", 'deployeur'),
 				"section" => "deployeur_section_hosting",
 				"options" => array(
-					"none" => __("Aucun", 'deployeur'),
+					"none" => __("None", 'deployeur'),
 					"Vercel" => __("Vercel", 'deployeur'),
 					"Netlify" => __("Netlify", 'deployeur'),
 				)
@@ -218,35 +223,42 @@ class Deployeur_Admin {
 				"name" => "deployeur_webhook_url",
 				"title" => __("Webhook URL", 'deployeur'),
 				"section" => "deployeur_section_hosting",
+				"note" => __("Learn how to create hooks with <a href='https://docs.netlify.com/configure-builds/build-hooks/' rel='noopener' target='_blank'>Netlify</a> or <a href='https://vercel.com/docs/concepts/git/deploy-hooks' rel='noopener' target='_blank'>Vercel</a>.", 'deployeur'),
 			),
 			array(
 				"name" => "deployeur_netlify_badge_url",
 				"title" => __("Netlify badge URL", 'deployeur'),
 				"section" => "deployeur_section_hosting",
-				"note" => __("The badge will only be used for Netlify host.", 'deployeur'),
+				"note" => __("This badge field will only be available when you use Netlify.", 'deployeur'),
+				"placeholder" => "https://api.netlify.com/api/v1/badges/YOUR_UNIQUE_ID/deploy-status",
+
 			),
 			array(
 				"name" => "deployeur_average_build_time",
 				"title" => __("Average time of build", 'deployeur'),
 				"section" => "deployeur_section_hosting",
-				"note" => __("The time is used to display to the user that trigger deploy the average time of a build.", 'deployeur'),
+				"note" => __("Fill this field with your average build time (you should find it in the deployments history section into the dashboard of your hosting provider).<br/>It will be used to display a notification to your content editor after they triggered a deploy.", 'deployeur'),
+				"placeholder" => __("2 mn", 'deployeur'),
 			),
 			array(
 				"name" => "deployeur_public_url",
 				"title" => __("Public URL", 'deployeur'),
 				"section" => "deployeur_section_site_options",
-			),
-			array(
-				"name" => "deployeur_imgkit_url",
-				"title" => __("ImageKit endpoints", 'deployeur'),
-				"section" => "deployeur_section_site_options",
+				"note" => __("Enter here the domain name where you want your content to be used.", 'deployeur'),
+				"placeholder" => "https://yourwebsite.com",
 			),
 			array(
 				"type" => "checkbox",
 				"name" => "deployeur_keep",
 				"title" => __("Data", 'deployeur'),
-				"section" => "deployeur_section_plguin_options",
+				"section" => "deployeur_section_plugin_options",
 				"label" => __("Keep the data on plugin delete", 'deployeur'),
+			),
+			array(
+				"name" => "deployeur_imgkit_url",
+				"title" => __("ImageKit endpoints", 'deployeur'),
+				"section" => "deployeur_section_images_options",
+				"note" => __("Not available yet.", 'deployeur'),
 			)
 		);
 	}

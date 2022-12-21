@@ -68,7 +68,7 @@ $options = get_option('deployeur_options');
 
 		<div class="pt-5">
 			<p class="submit">
-				<input type="submit" name="submit" id="submit" class="!px-7 !py-2.5 !font-bold !rounded-none !bg-green hover:!bg-green-600 !text-black !text-base !placeholder:text-gray-400 !border-green hover:!text-black !transition button button-primary" value="<?= __("Save changes", "deployeur") ?>">
+				<input type="submit" name="submit" id="submit" class="!px-7 !py-2.5 !font-bold !rounded-none !bg-green hover:!bg-green-600 !text-black !text-base !border-green hover:!text-black !transition button button-primary" value="<?= __("Save changes", "deployeur") ?>">
 			</p>
 		</div>
 	</form>

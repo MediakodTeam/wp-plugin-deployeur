@@ -1,4 +1,4 @@
-# 🚀 The Deployeur, a plugin to use WordPress as a headless CMS!
+# Deployeur, a plugin to use WordPress as a headless CMS!
 
 ## 📖 Description
 
@@ -9,13 +9,14 @@ Indeed, static site generation often come with benefits of better security, bett
 So far we had only seen solutions that triggered a deploy each time a post was published or updated by a user.
 Triggering multiple builds in a row wasn't really consistent with the spirit of designing environmentally friendly websites.
 
-That is why we started The Deployeur's adventure!
+That is why we started the Deployeur's adventure!
 
 
 ## 📦 Installation
 
 1. Upload the plugin files to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
+3. Go to the Deployeur Section
 
 ## 📝 Changelog
 

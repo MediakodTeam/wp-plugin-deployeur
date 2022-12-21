@@ -17,7 +17,7 @@
 				</div>
 			<?php break;
 			default: ?>
-				<input id='<?= esc_attr($field['name']); ?>' placeholder="<?= isset($field['placeholder']) ? esc_attr($field['placeholder']) : ""; ?>" class="!px-2 !py-1 block w-full max-w-lg rounded-md !border-gray-300 focus:!shadow-none focus:!ring-2 focus:!border-green focus:!ring-green sm:text-sm transition" name="deployeur_options[<?= esc_attr($field['name']); ?>]" type="<?= isset($field['type']) ? $field['type'] : "text" ?>" value='<?= isset($options[$field['name']]) ? esc_attr($options[$field['name']]) : ''; ?>' />
+				<input id='<?= esc_attr($field['name']); ?>' placeholder="<?= isset($field['placeholder']) ? esc_attr($field['placeholder']) : ""; ?>" class="!px-2 !py-1 block w-full max-w-lg rounded-md !border-gray-300 focus:!shadow-none focus:!ring-2 focus:!border-green focus:!ring-green placeholder:!text-gray-400 sm:text-sm transition" name="deployeur_options[<?= esc_attr($field['name']); ?>]" type="<?= isset($field['type']) ? $field['type'] : "text" ?>" value='<?= isset($options[$field['name']]) ? esc_attr($options[$field['name']]) : ''; ?>' />
 		<?php break;
 		endswitch; ?>
 

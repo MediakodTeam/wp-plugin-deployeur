@@ -43,12 +43,12 @@ class Deployeur_i18n {
 			'success' => __('Success'),
 			'error' => __('Failure'),
 			'confirm' => __('Confirm'),
-			'deploy-success' => sprintf(__("You're build is in progress ! The average time of a build is %s.", "deployeur"), is_array(get_option('deployeur_options')) ? get_option('deployeur_options')['deployeur_average_build_time'] : ""),
+			'deploy-success' => sprintf(__("Your build is in progress! The average time of build for your install is %s.", "deployeur"), is_array(get_option('deployeur_options')) ? get_option('deployeur_options')['deployeur_average_build_time'] : ""),
 			'deploy-error' => __("The deploy has failed, please be sure to have correctly set your webhook URL.", "deployeur"),
 			'loading' => __("Loading", "deployeur"),
 			'deploy-loading' => __("The deploy is in progress, please wait a few seconds before trying again. If the problem persists, please contact your administrator.", "deployeur"),
 			'cancel' => __("Cancel"),
-			'confirm-clear' => __("Are you sure you want to clear the history ?", 'deployeur'),
+			'confirm-clear' => __("Are you sure you want to clear the history?", 'deployeur'),
 			'confirm-clear-content' => __("This action is irreversible.", "deployeur"),
 		);
 
