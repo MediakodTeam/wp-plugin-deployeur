@@ -28,7 +28,12 @@ class Deployeur_i18n {
 			dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
 		);
 
-		add_action('admin_init', array($this, 'insert_translations_key'));
+
+		// Add HTML before body
+		add_action('admin_footer', array($this, 'insert_translations_key'));
+
+
+		// add_action('admin_init', array($this, 'insert_translations_key'));
 	}
 
 	/**
@@ -53,7 +58,7 @@ class Deployeur_i18n {
 		);
 
 		// Insert data attribute
-		echo '<ul id="mkd-translations" class="hidden">';
+		echo '<ul id="mkd-translations" style="display: none" class="hidden">';
 
 		foreach ($translations as $key => $value) {
 			echo '<li id="' . $key . '">' . $value . '</li>';
