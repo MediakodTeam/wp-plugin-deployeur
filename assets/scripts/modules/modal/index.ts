@@ -51,7 +51,6 @@ export class Modal {
 		const modal = document.createElement("div");
 		modal.id = this.modalId;
 		modal.classList.add(
-			"fixed",
 			"inset-0",
 			"z-[112000]",
 			"opacity-0",
@@ -61,6 +60,9 @@ export class Modal {
 			"justify-center",
 			"transition"
 		);
+		// Ignore this from tailwind purge
+
+		modal.style.position = "fixed";
 		modal.setAttribute("role", "dialog");
 		modal.setAttribute("aria-modal", "true");
 
