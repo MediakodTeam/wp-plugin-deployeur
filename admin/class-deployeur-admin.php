@@ -141,20 +141,23 @@ class Deployeur_Admin {
 	public function add_admin_topbar_item() {
 		global $wp_admin_bar;
 
-		// add items before "My account" on wp admin bar
-		$wp_admin_bar->add_node(array(
-			'id' => 'deploy-status',
-			'title' => __('Status', 'deployeur'),
-			'href' => "#",
-			'parent' => 'top-secondary',
-			'meta' => array(
-				'title' => __('Deployeur', 'deployeur'),
-				'class' => 'deployeur',
-				'html' => "<span style='position: absolute; inset: 0; opacity: 0; cursor: not-allowed'></span>"
-			)
-		));
-
 		$options = get_option('deployeur_options');
+
+		// Add nodes with deployeur_netlify_badge_url from $options
+		if (isset($options['deployeur_netlify_badge_url']) && $options['deployeur_netlify_badge_url'] !== '' && $options['deployeur_hostings_type'] == "Netlify") {
+			$wp_admin_bar->add_node(array(
+				'id' => 'deploy-status-netlify',
+				'title' => '<img style="vertical-align: middle" src="' . $options['deployeur_netlify_badge_url'] . '" alt="Netlify Status" />',
+				'href' => "#",
+				'parent' => 'top-secondary',
+				'meta' => array(
+					'title' => __('Netlify Status', 'deployeur'),
+					'class' => 'deployeur',
+					'html' => "<span style='position: absolute; inset: 0; opacity: 0; cursor: not-allowed'></span>"
+				)
+			));
+		}
+
 
 		// add items before "My account" on wp admin bar
 		$wp_admin_bar->add_node(array(
