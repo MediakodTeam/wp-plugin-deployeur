@@ -159,9 +159,21 @@ class Deployeur_Admin {
 		// add items before "My account" on wp admin bar
 		$wp_admin_bar->add_node(array(
 			'id' => 'trigger-deploy',
-			'title' => '<span class="ab-icon dashicons dashicons-cloud" style="top: 2px"></span>' . __('Deploy now', 'deployeur') . '' . ($this->helpers->get_count_of_update() > 0 ? '<span class="!px-1.5 inline-flex !h-5 items-center justify-center !ml-1 text-white bg-red-500 !rounded-full plugin-count">' . $this->helpers->get_count_of_update() . '</span>' : ''),
-			'href' => "#",
+			'title' => '<span class="ab-icon dashicons dashicons-cloud" style="top: 2px"></span>Deployeur ' . ($this->helpers->get_count_of_update() > 0 ? '<span class="!px-1.5 inline-flex !h-5 items-center justify-center !ml-1 text-white bg-red-500 !rounded-full plugin-count">' . $this->helpers->get_count_of_update() . '</span>' : ''),
+			'href' => admin_url('admin.php?page=deployeur'),
 			'parent' => 'top-secondary',
+			'meta' => array(
+				'title' => __('Deployeur', 'deployeur'),
+				'class' => 'deployeur',
+			)
+		));
+
+		// Add subnodes
+		$wp_admin_bar->add_node(array(
+			'id' => 'deployeur-deploy-now',
+			'title' => __('Deploy now', 'deployeur'),
+			'href' => "#",
+			'parent' => 'trigger-deploy',
 			'meta' => array(
 				'title' => __('Deployeur', 'deployeur'),
 				'class' => 'deployeur',
