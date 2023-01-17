@@ -8,7 +8,7 @@
  * Author URI:  https://mediakod.com
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Version:     0.2.4
+ * Version:     0.2.5
  * Text Domain: mk-deployeur
  * Prefix: mkd_
  * 
