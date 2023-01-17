@@ -30,6 +30,21 @@ class Deployeur_Activator {
       user_id mediumint(9) NOT NULL,
       status varchar(20) NOT NULL,
       webhooks varchar(255) NOT NULL,
+      update_count mediumint(9) NOT NULL,
+      UNIQUE KEY id (id)
+    ) $charset_collate;";
+
+    dbDelta($sql);
+
+    $table_name = $wpdb->prefix . 'deployeur_update';
+
+    $sql = "CREATE TABLE $table_name (
+      id mediumint(9) NOT NULL AUTO_INCREMENT,
+      date datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+      user_id mediumint(9) NOT NULL,
+      item_id mediumint(9) NOT NULL,
+      status varchar(20) NOT NULL,
+      note text NOT NULL,
       UNIQUE KEY id (id)
     ) $charset_collate;";
 

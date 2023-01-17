@@ -27,6 +27,7 @@ class Deployeur_Admin {
 	 * @access private
 	 * @var string $plugin_path The plugin path
 	 */
+	private $plugin_path;
 
 	/**
 	 * The version of this plugin.
@@ -36,6 +37,15 @@ class Deployeur_Admin {
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
+
+	/**
+	 * The helpers of the plugin.
+	 *
+	 * @since    0.2.4
+	 * @access   public
+	 * @var      Deployeur_Helpers    $helpers    The helpers of the plugin.
+	 */
+	public $helpers;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -53,6 +63,13 @@ class Deployeur_Admin {
 		add_action('admin_menu', array($this, 'add_admin_menu'));
 		add_action('admin_bar_menu', array($this, 'add_admin_topbar_item'), 1000);
 		add_action('admin_init', array($this, 'register_options'));
+
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-deployeur-admin-hooks.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-deployeur-admin-helpers.php';
+
+		new Deployeur_Hooks();
+
+		$this->helpers = new Deployeur_Helpers();
 	}
 
 	/**
@@ -71,16 +88,6 @@ class Deployeur_Admin {
 	 */
 	public function enqueue_scripts() {
 		wp_enqueue_script($this->plugin_name, str_replace(ABSPATH, '/', $this->plugin_path) . '/dist/index.js', array('jquery'), $this->version, false);
-	}
-
-	/**
-	 * Run the loader to execute all of the hooks with WordPress.
-	 *
-	 * @since    0.1.0
-	 */
-
-	public function run() {
-		$this->loader->run();
 	}
 
 	/**
@@ -118,7 +125,9 @@ class Deployeur_Admin {
 			__('Logs', 'deployeur'),
 			'manage_options',
 			'deployeur-logs',
-			array($this, 'display_admin_page')
+			function () {
+				$this->display_admin_page('logs');
+			}
 		);
 	}
 
@@ -150,7 +159,7 @@ class Deployeur_Admin {
 		// add items before "My account" on wp admin bar
 		$wp_admin_bar->add_node(array(
 			'id' => 'trigger-deploy',
-			'title' => '<span class="ab-icon dashicons dashicons-cloud" style="top: 2px"></span>' . __('Deploy now', 'deployeur'),
+			'title' => '<span class="ab-icon dashicons dashicons-cloud" style="top: 2px"></span>' . __('Deploy now', 'deployeur') . '' . ($this->helpers->get_count_of_update() > 0 ? '<span class="!px-1.5 inline-flex !h-5 items-center justify-center !ml-1 text-white bg-red-500 !rounded-full plugin-count">' . $this->helpers->get_count_of_update() . '</span>' : ''),
 			'href' => "#",
 			'parent' => 'top-secondary',
 			'meta' => array(
@@ -171,9 +180,14 @@ class Deployeur_Admin {
 	 */
 
 	public function display_admin_page($page) {
+
+
 		switch ($page) {
 			case 'options':
 				require_once $this->plugin_path . '/admin/partials/deployeur-admin-options.php';
+				break;
+			case 'logs':
+				require_once $this->plugin_path . '/admin/partials/deployeur-admin-logs.php';
 				break;
 			default:
 				require_once $this->plugin_path . '/admin/partials/deployeur-admin-display.php';

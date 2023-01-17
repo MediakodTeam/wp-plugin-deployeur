@@ -26,8 +26,16 @@ class Deployeur_Ajax {
 				'user_id' => get_current_user_id(),
 				'status' => $_POST['status'],
 				'webhooks' => $_POST['webhooks'],
+				'update_count' => $_POST['status'] == "success" ? $this->get_count_of_update() : 0
 			)
 		);
+
+		// Clean the update table
+		if ($_POST['status'] == "success") {
+			$table_name = $wpdb->prefix . 'deployeur_update';
+
+			$wpdb->query("TRUNCATE TABLE $table_name");
+		}
 
 		return wp_send_json_success();
 	}
@@ -40,5 +48,15 @@ class Deployeur_Ajax {
 		$wpdb->query("TRUNCATE TABLE $table_name");
 
 		return wp_send_json_success();
+	}
+
+	public function get_count_of_update() {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . "deployeur_update";
+
+		$count = $wpdb->get_var("SELECT COUNT(*) FROM $table_name");
+
+		return $count;
 	}
 }

@@ -28,6 +28,10 @@ class Deployeur_Deactivator {
       $sql = "DROP TABLE IF EXISTS $table_name";
       $wpdb->query($sql);
 
+      $table_name = $wpdb->prefix . 'deployeur_update';
+      $sql = "DROP TABLE IF EXISTS $table_name";
+      $wpdb->query($sql);
+
       delete_option("deployeur_options");
     }
   }
