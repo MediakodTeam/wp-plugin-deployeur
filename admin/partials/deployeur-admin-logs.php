@@ -19,8 +19,10 @@ $history = $wpdb->get_results("SELECT * FROM $table_name ORDER BY id DESC");
 		<div class="md:flex md:items-center md:justify-between">
 			<div class="flex-1">
 				<h2 class="!text-lg mt-8 md:!text-xl">
-					<?= __('Last deploy trigger', 'deployeur') ?>
+					<?= __('Latest deployment triggers', 'deployeur') ?>
 				</h2>
+				<p class="mt-2 text-sm">
+					<?= __('Find here the history of deployments triggered by this plugin.', 'deployeur') ?>
 			</div>
 
 			<div class="flex mt-4 md:mt-0 md:ml-4">
@@ -94,9 +96,9 @@ $history = $wpdb->get_results("SELECT * FROM $table_name ORDER BY id DESC");
 					<path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
 				</svg>
 
-				<h3 class="mt-2 text-sm font-medium text-gray-900"><?= __('No deploy', 'deployeur') ?></h3>
+				<h3 class="mt-2 text-sm font-medium text-gray-900"><?= __('There is no deployment history here.', 'deployeur') ?></h3>
 				<p class="mt-1 text-sm text-gray-500">
-					<?= __('No deploy has been made yet.', 'deployeur') ?>
+					<?= __('You have not yet used this plugin to deploy your content.', 'deployeur') ?>
 				</p>
 			</div>
 		<?php endif; ?>

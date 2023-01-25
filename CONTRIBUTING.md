@@ -2,7 +2,7 @@
 
 ## Reporting bugs
 
-If you find a bug, please report it on the [issue tracker](https://github.com/MediakodTeam/wp-plugin-wp2headless/issues)
+If you find a bug, please report it on the [issue tracker](https://github.com/MediakodTeam/wp-plugin-deployeur/issues)
 
 ## Contributing code
 

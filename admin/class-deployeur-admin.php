@@ -220,17 +220,19 @@ class Deployeur_Admin {
 			array(
 				"id" => "deployeur_section_site_options",
 				"title" => __('Site settings', 'deployeur'),
-				"description" => __('This information is used to clean your data on the API'),
+				"description" => __('The informations provided here are used to  tweak the WordPress API with your frontend URL.'),
 				"icon" => "admin-settings"
 			),
 			array(
 				"id" => "deployeur_section_images_options",
 				"title" => __('Images settings', 'deployeur'),
+				"description" => __('The informations provided here will be used to tweak the WordPress API with custom end points.'),
 				"icon" => "format-gallery"
 			),
 			array(
 				"id" => "deployeur_section_plugin_options",
 				"title" => __('Plugin settings', 'deployeur'),
+				"description" => __('Check this box if you want to keep your settings and data into the WordPress database when you remove the plugin.'),
 				"icon" => "admin-generic"
 			),
 		);
@@ -282,7 +284,7 @@ class Deployeur_Admin {
 				"name" => "deployeur_keep",
 				"title" => __("Data", 'deployeur'),
 				"section" => "deployeur_section_plugin_options",
-				"label" => __("Keep the data on plugin delete", 'deployeur'),
+				"label" => __("Keep my data into WordPress when I delete the plugin folder from this installation.", 'deployeur'),
 			),
 			array(
 				"name" => "deployeur_imgkit_url",
