@@ -11,7 +11,7 @@ Triggering multiple builds in a row wasn't really consistent with the spirit of 
 
 That is why we started the Deployeur's adventure!
 
-## Features
+## 🚀 Features
 What is this plugin doing ?
 ### For developers
 1. Link your WordPress installation to Vercel or Netlify
@@ -31,7 +31,7 @@ What is this plugin doing ?
 3. Go to the Deployeur settings page.
 4. In the "Hosting settings" tab: select your hosting provider and set your webhook URL.
 5. If you select Netlify, fill the Netlify badge URL field with your Netlify's site ID.
-5. (Up next) In the "Site settings" tab: fill the public URL field with your front-end domain name. 
+6. In the "Site settings" tab: fill the public URL field with your front-end domain name to add it to the WordPress's API.
 
 ## 📝 Changelog
 
