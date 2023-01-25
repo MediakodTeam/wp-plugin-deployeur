@@ -30,7 +30,7 @@ What is this plugin doing ?
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Go to the Deployeur settings page.
 4. In the "Hosting settings" tab: select your hosting provider and set your webhook URL.
-5. If you select Netlify, fill the Netlify badge URL field with your Netlify's site ID.
+5. If you select Netlify, fill the Netlify badge URL field with your Netlify's badges URL (found it inside Site Settings > Status badges).
 6. In the "Site settings" tab: fill the public URL field with your front-end domain name to add it to the WordPress's API.
 
 ## 📝 Changelog
