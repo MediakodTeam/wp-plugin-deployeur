@@ -8,7 +8,7 @@
  * Author URI:  https://mediakod.com
  * License:     GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Version:     0.2.5
+ * Version:     1.0.0
  * Text Domain: mk-deployeur
  * Prefix: mkd_
  * 
@@ -19,7 +19,7 @@ if (!defined('WPINC')) {
 	die;
 }
 
-define('MKD_VERSION', '0.2.4');
+define('MKD_VERSION', '1.0.0');
 
 /**
  * The code that runs during plugin activation.
