@@ -3,7 +3,7 @@
 	"description": "The Deployeur allows you to view a history of changes to your content before triggering webhooks that deploy your data to your headless architecture.",
 	"type": "wordpress-plugin",
 	"license": "GPL-3.0+",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"keywords": [
 		"wordpress",
 		"plugin",
