@@ -1,0 +1,370 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MK Deployeur\n"
+"POT-Creation-Date: 2023-04-05 13:34+0200\n"
+"PO-Revision-Date: 2023-04-06 08:34+0200\n"
+"Last-Translator: \n"
+"Language-Team: Mediakod\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/class-deployeur-admin-helpers.php:48
+msgid "second"
+msgstr "seconde"
+
+#: admin/class-deployeur-admin-helpers.php:48
+msgid "minute"
+msgstr "minute"
+
+#: admin/class-deployeur-admin-helpers.php:48
+msgid "hour"
+msgstr "heure"
+
+#: admin/class-deployeur-admin-helpers.php:48
+msgid "day"
+msgstr "jour"
+
+#: admin/class-deployeur-admin-helpers.php:48
+msgid "month"
+msgstr "mois"
+
+#: admin/class-deployeur-admin-helpers.php:48
+msgid "year"
+msgstr "année"
+
+#: admin/class-deployeur-admin-helpers.php:122
+#, php-format
+msgid "%s published post <strong><a href='%s'>%s</a></strong>"
+msgstr "%s article publié <strong><a href=‘%s’>%s</a></strong>"
+
+#: admin/class-deployeur-admin-helpers.php:124
+#, php-format
+msgid "%s unpublished post <strong>%s</strong>"
+msgstr "%s article dépublié <strong>%s</strong>"
+
+#: admin/class-deployeur-admin-helpers.php:126
+#, php-format
+msgid "%s deleted post <strong>%s</strong>"
+msgstr "%s article supprimé <strong>%s</strong>"
+
+#: admin/class-deployeur-admin-helpers.php:128
+#, php-format
+msgid "%s updated the menu <strong>%s</strong>"
+msgstr "%s mettre à jour le menu <strong>%s</strong>"
+
+#: admin/class-deployeur-admin-helpers.php:130
+#, php-format
+msgid "%s updated post <strong><a href='%s'>%s</a></strong>"
+msgstr "%s article mis à jour <strong><a href=‘%s’>%s</a></strong>"
+
+#: admin/class-deployeur-admin.php:113 admin/class-deployeur-admin.php:114
+#: admin/partials/deployeur-admin-options.php:14
+msgid "Settings"
+msgstr "Réglages"
+
+#: admin/class-deployeur-admin.php:124 admin/class-deployeur-admin.php:125
+#: admin/partials/deployeur-admin-logs.php:15
+msgid "Logs"
+msgstr "Logs"
+
+#: admin/class-deployeur-admin.php:154
+msgid "Netlify Status"
+msgstr "Statut Netlify"
+
+#: admin/class-deployeur-admin.php:169 admin/class-deployeur-admin.php:181
+msgid "Deployeur"
+msgstr "Déployeur"
+
+#: admin/class-deployeur-admin.php:177
+#: admin/partials/deployeur-admin-display.php:37
+msgid "Deploy now"
+msgstr "Déployer"
+
+#: admin/class-deployeur-admin.php:183
+#, php-format
+msgid "You&apos;re build is in progress ! The average time of a build is %s."
+msgstr "Votre build est en cours ! Le temps moyen de build est de %s."
+
+#: admin/class-deployeur-admin.php:183 includes/class-deployeur-i18n.php:52
+msgid ""
+"The deploy has failed, please be sure to have correctly set your webhook URL."
+msgstr ""
+"Le déploiement a échoué, merci de vérifier que vous avez correctement défini "
+"l’URL du webhook."
+
+#: admin/class-deployeur-admin.php:216
+msgid "Hosting settings"
+msgstr "Réglages d’hébergement"
+
+#: admin/class-deployeur-admin.php:217
+msgid ""
+"Those informations are used to connect your WordPress installation to your "
+"hosting provider."
+msgstr ""
+"Ces informations sont utilisées pour connecter votre installation WordPress "
+"à votre hébergeur."
+
+#: admin/class-deployeur-admin.php:222
+msgid "Site settings"
+msgstr "Réglages du site"
+
+#: admin/class-deployeur-admin.php:223
+msgid ""
+"The informations provided here are used to  tweak the WordPress API with "
+"your frontend URL."
+msgstr ""
+"Les informations founries ici sont utilisées pour adapter l’API de WordPress "
+"à votre URL frontend."
+
+#: admin/class-deployeur-admin.php:228
+msgid "Images settings"
+msgstr "Réglages d’images"
+
+#: admin/class-deployeur-admin.php:229
+msgid ""
+"The informations provided here will be used to tweak the WordPress API with "
+"custom end points."
+msgstr ""
+"Les informations fournies ici seront utilisées pour modifier l’API de "
+"WordPress avec des endpoints personnalisés."
+
+#: admin/class-deployeur-admin.php:234
+msgid "Plugin settings"
+msgstr "Réglages du plugin"
+
+#: admin/class-deployeur-admin.php:235
+msgid ""
+"Check this box if you want to keep your settings and data into the WordPress "
+"database when you remove the plugin."
+msgstr ""
+"Cochez cette case si vous voulez conserver les paramètres et données "
+"stockées dans la base de données de WordPress à la suppression du plugin."
+
+#: admin/class-deployeur-admin.php:246
+msgid "Hosting provider"
+msgstr "Hébergeur"
+
+#: admin/class-deployeur-admin.php:249
+msgid "None"
+msgstr "Aucun"
+
+#: admin/class-deployeur-admin.php:250
+msgid "Vercel"
+msgstr "Vercel"
+
+#: admin/class-deployeur-admin.php:251
+msgid "Netlify"
+msgstr "Netlify"
+
+#: admin/class-deployeur-admin.php:256
+msgid "Webhook URL"
+msgstr "URL du webhook"
+
+#: admin/class-deployeur-admin.php:258
+msgid ""
+"Learn how to create hooks with <a href='https://docs.netlify.com/configure-"
+"builds/build-hooks/' rel='noopener' target='_blank'>Netlify</a> or <a "
+"href='https://vercel.com/docs/concepts/git/deploy-hooks' rel='noopener' "
+"target='_blank'>Vercel</a>."
+msgstr ""
+"Apprenez à créer un hook avec <a href=‘https://docs.netlify.com/configure-"
+"builds/build-hooks/' rel=‘noopener’ target=‘_blank’>Netlify</a> or <a "
+"href=‘https://vercel.com/docs/concepts/git/deploy-hooks' rel=‘noopener’ "
+"target=‘_blank’>Vercel</a>."
+
+#: admin/class-deployeur-admin.php:262
+msgid "Netlify badge URL"
+msgstr "URL du badge Netlify"
+
+#: admin/class-deployeur-admin.php:264
+msgid "This badge field will only be available when you use Netlify."
+msgstr "Ce champ badge n’est disponible que lorsque vous utilisez Netlify."
+
+#: admin/class-deployeur-admin.php:270
+msgid "Average time of build"
+msgstr "Moyenne de temps de build"
+
+#: admin/class-deployeur-admin.php:272
+msgid ""
+"Fill this field with your average build time (you should find it in the "
+"deployments history section into the dashboard of your hosting provider).<br/"
+">It will be used to display a notification to your content editor after they "
+"triggered a deploy."
+msgstr ""
+"Complétez ce champ avec votre temps de build moyen (vous pouvez le trouver "
+"dans l’historique de déploiements de votre hébergeur).<br/>Il sera utilisé "
+"pour afficher une notification dans votre éditeur de contenu après avoir "
+"déclenché un déploiement."
+
+#: admin/class-deployeur-admin.php:273
+msgid "2 mn"
+msgstr "2 mn"
+
+#: admin/class-deployeur-admin.php:277
+msgid "Public URL"
+msgstr "URL publique"
+
+#: admin/class-deployeur-admin.php:279
+msgid "Enter here the domain name where you want your content to be used."
+msgstr ""
+"Veuillez entrer le nom de domaine où vous souhaitez utiliser le contenu."
+
+#: admin/class-deployeur-admin.php:285
+msgid "Data"
+msgstr "Données"
+
+#: admin/class-deployeur-admin.php:287
+msgid ""
+"Keep my data into WordPress when I delete the plugin folder from this "
+"installation."
+msgstr "Conserver mes données dans WordPress à la suppression du plugin."
+
+#: admin/class-deployeur-admin.php:291
+msgid "ImageKit endpoints"
+msgstr "Endpoints ImageKit"
+
+#: admin/class-deployeur-admin.php:293
+msgid "Not available yet."
+msgstr "Ceci n’est pas encore disponible."
+
+#: admin/partials/deployeur-admin-display.php:20
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: admin/partials/deployeur-admin-display.php:26
+msgid "Deploy your site"
+msgstr "Déployer votre site"
+
+#: admin/partials/deployeur-admin-display.php:31
+#, php-format
+msgid "%s change(s) are waiting to be deployed."
+msgstr "%s changements en attente de déploiement."
+
+#: admin/partials/deployeur-admin-display.php:35
+#, php-format
+msgid "You're build is in progress ! The average time of a build is %s."
+msgstr "Votre build est en cours ! Le temps moyen de build est de %s."
+
+#: admin/partials/deployeur-admin-display.php:35
+msgid ""
+" The deploy has failed. Please check that you have correctly configured your "
+"webhook URL in the plugin settings."
+msgstr ""
+" Le déploiement a échoué, merci de vérifier que vous avez correctement "
+"défini l’URL du webhook."
+
+#: admin/partials/deployeur-admin-display.php:41
+msgid ""
+"You need to configure your webhook URL to be able to deploy your website. "
+"Please review your hosting settings."
+msgstr ""
+"Merci de configurer l’URL du webhook afin de déployer votre site. Veuillez "
+"vérifier vos réglages hébergeurs."
+
+#: admin/partials/deployeur-admin-display.php:50
+msgid "Pending changes"
+msgstr "Changements en attente"
+
+#: admin/partials/deployeur-admin-display.php:53
+msgid ""
+"Review the history of your last content editions before deploying. This list "
+"will be deleted each time you deploys."
+msgstr ""
+"Vérifiez l’historique de vos derniers changements avant de déployer. Cet "
+"historique sera supprimé à chaque nouveau déploiement."
+
+#: admin/partials/deployeur-admin-display.php:75
+msgid "There is nothing here"
+msgstr "Il n’y a rien ici"
+
+#: admin/partials/deployeur-admin-display.php:76
+msgid "All your recent changes have already been deployed, well done!"
+msgstr "Tous vos changements récents ont été déployés. Bien joué !"
+
+#: admin/partials/deployeur-admin-logs.php:22
+msgid "Latest deployment triggers"
+msgstr "Derniers déploiements"
+
+#: admin/partials/deployeur-admin-logs.php:25
+msgid "Find here the history of deployments triggered by this plugin."
+msgstr "Historique des déploiements de ce plugin."
+
+#: admin/partials/deployeur-admin-logs.php:31
+msgid "Clear history"
+msgstr "Vider l’historique"
+
+#: admin/partials/deployeur-admin-logs.php:72
+#, php-format
+msgid "Deployed by <strong class=\"font-bold text-black\">%s</strong>"
+msgstr "Déployé par <strong class=« font-bold text-black »>%s</strong>"
+
+#: admin/partials/deployeur-admin-logs.php:75
+#, php-format
+msgid "%s update(s) has been published"
+msgstr "%s mise(s) à jour a/ont été publiée(s)"
+
+#: admin/partials/deployeur-admin-logs.php:99
+msgid "There is no deployment history here."
+msgstr "Il n’y a pas d’historique de déploiement."
+
+#: admin/partials/deployeur-admin-logs.php:101
+msgid "You have not yet used this plugin to deploy your content."
+msgstr "Vous n’avez pas encore utilisé ce plugin pour déployer votre contenu."
+
+#: admin/partials/deployeur-admin-options.php:71
+msgid "Save changes"
+msgstr "Sauvegarder"
+
+#: admin/partials/includes/deployeur-admin-notices.php:23
+msgid "Dismiss"
+msgstr "Rejeter"
+
+#: includes/class-deployeur-i18n.php:48
+msgid "Success"
+msgstr "Réussi"
+
+#: includes/class-deployeur-i18n.php:49
+msgid "Failure"
+msgstr "Échoué"
+
+#: includes/class-deployeur-i18n.php:50
+msgid "Confirm"
+msgstr "Confirmer"
+
+#: includes/class-deployeur-i18n.php:51
+#, php-format
+msgid ""
+"Your build is in progress! The average time of build for your install is %s."
+msgstr "Votre build est en cours ! Le temps moyen de build est de %s."
+
+#: includes/class-deployeur-i18n.php:53
+msgid "Loading"
+msgstr "Chargement"
+
+#: includes/class-deployeur-i18n.php:54
+msgid ""
+"The deploy is in progress, please wait a few seconds before trying again. If "
+"the problem persists, please contact your administrator."
+msgstr ""
+"Le déploiement est en cours, veuillez attendre quelques secondes avant de "
+"tenter à nouveau. Si le problème persiste, merci de contacter votre "
+"administrateur."
+
+#: includes/class-deployeur-i18n.php:55
+msgid "Cancel"
+msgstr "Annuler"
+
+#: includes/class-deployeur-i18n.php:56
+msgid "Are you sure you want to clear the history?"
+msgstr "Êtes-vous sûr(e) de vouloir vider l’historique ?"
+
+#: includes/class-deployeur-i18n.php:57
+msgid "This action is irreversible."
+msgstr "Cette action est irréversible."
