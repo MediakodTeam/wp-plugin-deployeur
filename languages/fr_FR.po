@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MK Deployeur\n"
 "POT-Creation-Date: 2023-04-05 13:34+0200\n"
-"PO-Revision-Date: 2023-04-06 08:34+0200\n"
+"PO-Revision-Date: 2023-04-06 14:29+0200\n"
 "Last-Translator: \n"
 "Language-Team: Mediakod\n"
 "Language: fr_FR\n"
@@ -245,7 +245,7 @@ msgstr "Déployer votre site"
 #: admin/partials/deployeur-admin-display.php:31
 #, php-format
 msgid "%s change(s) are waiting to be deployed."
-msgstr "%s changements en attente de déploiement."
+msgstr "%s changement(s) en attente de déploiement."
 
 #: admin/partials/deployeur-admin-display.php:35
 #, php-format
@@ -265,8 +265,8 @@ msgid ""
 "You need to configure your webhook URL to be able to deploy your website. "
 "Please review your hosting settings."
 msgstr ""
-"Merci de configurer l’URL du webhook afin de déployer votre site. Veuillez "
-"vérifier vos réglages hébergeurs."
+"Vous devez configurer une URL du webhook afin de déployer votre site. "
+"Vérifier vos données dans les réglages du plugin."
 
 #: admin/partials/deployeur-admin-display.php:50
 msgid "Pending changes"
