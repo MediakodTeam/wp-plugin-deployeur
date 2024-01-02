@@ -12,8 +12,7 @@
  * @subpackage Deployeur/includes
  */
 
-class Deployeur_i18n
-{
+class Deployeur_i18n {
 
 
 	/**
@@ -21,8 +20,7 @@ class Deployeur_i18n
 	 *
 	 * @since    0.1.0
 	 */
-	public function load_plugin_textdomain()
-	{
+	public function load_plugin_textdomain() {
 
 		load_theme_textdomain('deployeur', dirname(dirname(__FILE__)) . '/languages');
 
@@ -39,7 +37,7 @@ class Deployeur_i18n
 		// add_action('init', array($this, 'insert_translations_key'));
 
 
-		// add_action('admin_init', array($this, 'insert_translations_key'));
+		add_action('admin_init', array($this, 'insert_translations_key'));
 	}
 
 	/**
@@ -48,8 +46,7 @@ class Deployeur_i18n
 	 * @since 0.2.1
 	 * 
 	 */
-	public function insert_translations_key()
-	{
+	public function insert_translations_key() {
 
 		$translations = array(
 			'success' => __('Success'),
