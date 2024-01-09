@@ -37,7 +37,7 @@ class Deployeur_i18n {
 		// add_action('init', array($this, 'insert_translations_key'));
 
 
-		add_action('admin_init', array($this, 'insert_translations_key'));
+		add_action('in_admin_header', array($this, 'insert_translations_key'));
 	}
 
 	/**
