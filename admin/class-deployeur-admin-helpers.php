@@ -113,7 +113,11 @@ class Deployeur_Helpers {
 			$title = get_the_title($item_id) ?: $note;
 		}
 
-		$user_name = get_user_by("ID", $user_id)->display_name;
+		if (get_user_by("ID", $user_id)) {
+			$user_name = get_user_by("ID", $user_id)->display_name;
+		} else {
+			$user_name = __("Un utilisateur", "deployeur");
+		}
 
 		$post_link = get_edit_post_link($item_id);
 

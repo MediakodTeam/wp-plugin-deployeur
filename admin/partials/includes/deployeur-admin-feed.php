@@ -21,7 +21,11 @@ $helpers = new Deployeur_Helpers();
 
 		<div class="relative flex items-center gap-2 space-x-3">
 			<div class="relative">
-				<img class="flex items-center justify-center w-10 h-10 bg-gray-400 rounded-full ring-8 ring-white" src="<?= get_avatar_url($user->ID) ?>" alt="">
+				<?php if ($user) : ?>
+					<img class="flex items-center justify-center w-10 h-10 bg-gray-400 rounded-full ring-8 ring-white" src="<?= get_avatar_url($user->ID) ?>" alt="">
+				<?php else : ?>
+					<img class="flex items-center justify-center w-10 h-10 bg-gray-400 rounded-full ring-8 ring-white" src="<?= get_avatar_url(0) ?>" alt="">
+				<?php endif; ?>
 
 				<span class="absolute -bottom-0.5 -right-1 rounded-tl bg-white px-0.5 py-px">
 					<?= $helpers->get_status_icon($update->status) ?>
