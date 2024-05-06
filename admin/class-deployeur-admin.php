@@ -9,8 +9,7 @@
  * @subpackage Deployeur/admin
  */
 
-class Deployeur_Admin
-{
+class Deployeur_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -55,8 +54,7 @@ class Deployeur_Admin
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct($plugin_name, $plugin_path, $version)
-	{
+	public function __construct($plugin_name, $plugin_path, $version) {
 
 		$this->plugin_name = $plugin_name;
 		$this->plugin_path = $plugin_path;
@@ -79,8 +77,7 @@ class Deployeur_Admin
 	 *
 	 * @since    0.1.0
 	 */
-	public function enqueue_styles()
-	{
+	public function enqueue_styles() {
 		wp_enqueue_style($this->plugin_name, str_replace(ABSPATH, '/', $this->plugin_path) . '/dist/main.css', array(), $this->version, 'all');
 	}
 
@@ -89,8 +86,7 @@ class Deployeur_Admin
 	 *
 	 * @since    0.1.0
 	 */
-	public function enqueue_scripts()
-	{
+	public function enqueue_scripts() {
 		wp_enqueue_script($this->plugin_name, str_replace(ABSPATH, '/', $this->plugin_path) . '/dist/index.js', array('jquery'), $this->version, false);
 	}
 
@@ -101,8 +97,7 @@ class Deployeur_Admin
 	 * 
 	 */
 
-	public function add_admin_menu()
-	{
+	public function add_admin_menu() {
 		add_menu_page(
 			'Deployeur',
 			'Deployeur',
@@ -143,8 +138,7 @@ class Deployeur_Admin
 	 * 
 	 */
 
-	public function add_admin_topbar_item()
-	{
+	public function add_admin_topbar_item() {
 		global $wp_admin_bar;
 
 		$options = get_option('deployeur_options');
@@ -164,31 +158,48 @@ class Deployeur_Admin
 			));
 		}
 
+		// If user has "manage_options" capability
+		if (current_user_can('manage_options')) {
 
-		// add items before "My account" on wp admin bar
-		$wp_admin_bar->add_node(array(
-			'id' => 'trigger-deploy',
-			'title' => '<span class="ab-icon dashicons dashicons-cloud" style="top: 2px"></span>Deployeur ' . ($this->helpers->get_count_of_update() > 0 ? '<span class="!px-1.5 inline-flex !h-5 items-center justify-center !ml-1 text-white bg-red-500 !rounded-full plugin-count">' . $this->helpers->get_count_of_update() . '</span>' : ''),
-			'href' => admin_url('admin.php?page=deployeur'),
-			'parent' => 'top-secondary',
-			'meta' => array(
-				'title' => __('Deployeur', 'deployeur'),
-				'class' => 'deployeur',
-			)
-		));
 
-		// Add subnodes
-		$wp_admin_bar->add_node(array(
-			'id' => 'deployeur-deploy-now',
-			'title' => __('Deploy now', 'deployeur'),
-			'href' => "#",
-			'parent' => 'trigger-deploy',
-			'meta' => array(
-				'title' => __('Deployeur', 'deployeur'),
-				'class' => 'deployeur',
-				'html' => "<span id='trigger-deploy' style='position: absolute; inset: 0; opacity: 0; cursor: pointer' data-deploy-webhook='" . (is_array($options) ? $options['deployeur_webhook_url'] : '') . "' data-deploy-hosting='" . (is_array($options) ? $options['deployeur_hostings_type'] : '') . "'  data-deploy-success='" . sprintf(__('You&apos;re build is in progress ! The average time of a build is %s.', 'deployeur'), is_array($options) ? $options['deployeur_average_build_time'] : '') . "' data-deploy-error='" . __("The deploy has failed, please be sure to have correctly set your webhook URL.", "deployeur") . "' data-ajax-url='" . admin_url('admin-ajax.php') . "'></span>"
-			)
-		));
+
+			// add items before "My account" on wp admin bar
+			$wp_admin_bar->add_node(array(
+				'id' => 'trigger-deploy',
+				'title' => '<span class="ab-icon dashicons dashicons-cloud" style="top: 2px"></span>Deployeur ' . ($this->helpers->get_count_of_update() > 0 ? '<span class="!px-1.5 inline-flex !h-5 items-center justify-center !ml-1 text-white bg-red-500 !rounded-full plugin-count">' . $this->helpers->get_count_of_update() . '</span>' : ''),
+				'href' => admin_url('admin.php?page=deployeur'),
+				'parent' => 'top-secondary',
+				'meta' => array(
+					'title' => __('Deployeur', 'deployeur'),
+					'class' => 'deployeur',
+				)
+			));
+
+			// Add subnodes
+			$wp_admin_bar->add_node(array(
+				'id' => 'deployeur-deploy-now',
+				'title' => __('Deploy now', 'deployeur'),
+				'href' => "#",
+				'parent' => 'trigger-deploy',
+				'meta' => array(
+					'title' => __('Deployeur', 'deployeur'),
+					'class' => 'deployeur',
+					'html' => "<span id='trigger-deploy' style='position: absolute; inset: 0; opacity: 0; cursor: pointer' data-deploy-webhook='" . (is_array($options) ? $options['deployeur_webhook_url'] : '') . "' data-deploy-hosting='" . (is_array($options) ? $options['deployeur_hostings_type'] : '') . "'  data-deploy-success='" . sprintf(__('You&apos;re build is in progress ! The average time of a build is %s.', 'deployeur'), is_array($options) ? $options['deployeur_average_build_time'] : '') . "' data-deploy-error='" . __("The deploy has failed, please be sure to have correctly set your webhook URL.", "deployeur") . "' data-ajax-url='" . admin_url('admin-ajax.php') . "'></span>"
+				)
+			));
+		} else {
+			$wp_admin_bar->add_node(array(
+				'id' => 'trigger-deploy',
+				'title' => '<span class="ab-icon dashicons dashicons-cloud" style="top: 2px"></span>Deployeur ' . ($this->helpers->get_count_of_update() > 0 ? '<span class="!px-1.5 inline-flex !h-5 items-center justify-center !ml-1 text-white bg-red-500 !rounded-full plugin-count">' . $this->helpers->get_count_of_update() . '</span>' : ''),
+				'href' => "#",
+				'parent' => 'top-secondary',
+				'meta' => array(
+					'title' => __('Deployeur', 'deployeur'),
+					'class' => 'deployeur',
+					'html' => "<span id='trigger-deploy' style='position: absolute; inset: 0; opacity: 0; cursor: pointer' data-deploy-webhook='" . (is_array($options) ? $options['deployeur_webhook_url'] : '') . "' data-deploy-hosting='" . (is_array($options) ? $options['deployeur_hostings_type'] : '') . "'  data-deploy-success='" . sprintf(__('You&apos;re build is in progress ! The average time of a build is %s.', 'deployeur'), is_array($options) ? $options['deployeur_average_build_time'] : '') . "' data-deploy-error='" . __("The deploy has failed, please be sure to have correctly set your webhook URL.", "deployeur") . "' data-ajax-url='" . admin_url('admin-ajax.php') . "'></span>"
+				)
+			));
+		}
 	}
 
 
@@ -200,8 +211,7 @@ class Deployeur_Admin
 	 * 
 	 */
 
-	public function display_admin_page($page)
-	{
+	public function display_admin_page($page) {
 
 
 		switch ($page) {
@@ -216,8 +226,7 @@ class Deployeur_Admin
 		}
 	}
 
-	public function get_options_sections()
-	{
+	public function get_options_sections() {
 		return array(
 			array(
 				"id" => "deployeur_section_hosting",
@@ -246,8 +255,7 @@ class Deployeur_Admin
 		);
 	}
 
-	public function get_options_fields()
-	{
+	public function get_options_fields() {
 		return array(
 			array(
 				"type" => "select",
@@ -312,8 +320,7 @@ class Deployeur_Admin
 	 * @return void
 	 */
 
-	public function register_options()
-	{
+	public function register_options() {
 		register_setting('deployeur_options', 'deployeur_options');
 
 		foreach ($this->get_options_sections() as $section) {
