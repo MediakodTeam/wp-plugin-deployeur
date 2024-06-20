@@ -101,7 +101,7 @@ class Deployeur_Admin {
 		add_menu_page(
 			'Deployeur',
 			'Deployeur',
-			'manage_options',
+			'edit_others_posts',
 			'deployeur',
 			array($this, 'display_admin_page'),
 			'dashicons-cloud',
@@ -160,9 +160,6 @@ class Deployeur_Admin {
 
 		// If user has "manage_options" capability
 		if (current_user_can('manage_options')) {
-
-
-
 			// add items before "My account" on wp admin bar
 			$wp_admin_bar->add_node(array(
 				'id' => 'trigger-deploy',
