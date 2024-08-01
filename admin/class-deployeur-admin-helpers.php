@@ -123,7 +123,7 @@ class Deployeur_Helpers {
 
 		switch ($status) {
 			case "post_published":
-				return sprintf(__("%s published post <strong><a href='%s'>%s</a></strong>", "deployeur"), $user_name, $post_link, $title);
+				return sprintf(__('%s published post <strong><a href="%s">%s</a></strong>', "deployeur"), $user_name, $post_link, $title);
 			case "post_unpublished":
 				return sprintf(__("%s unpublished post <strong>%s</strong>", "deployeur"), $user_name, $title);
 			case "post_deleted":
@@ -131,7 +131,7 @@ class Deployeur_Helpers {
 			case "menu_updated":
 				return sprintf(__("%s updated the menu <strong>%s</strong>", "deployeur"), $user_name, $title);
 			default:
-				return sprintf(__("%s updated post <strong><a href='%s'>%s</a></strong>", "deployeur"), $user_name, $post_link, $title);
+				return sprintf(__('%s updated post <strong><a href="%s">%s</a></strong>', "deployeur"), $user_name, $post_link, $title);
 		}
 	}
 
