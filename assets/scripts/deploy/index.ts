@@ -13,39 +13,6 @@ const defineFetchMethod = (hosting: string): "GET" | "POST" => {
 	}
 };
 
-const fetchWebhooks = async (
-	webhook: string,
-	method: "GET" | "POST"
-): Promise<any> => {
-	const response = await fetch(webhook, {
-		method,
-		headers: {
-			"Content-Type": "application/json",
-		},
-	})
-		.then((res) => res.json())
-		.then((data) => {
-			if (data.error) {
-				return {
-					...data,
-				};
-			}
-
-			return {
-				success: true,
-			};
-		})
-		.catch((error) => {
-			console.log("⛔️ ", error);
-
-			return {
-				error: "Unknow error, please check your console",
-			};
-		});
-
-	return response;
-};
-
 const handleDeployTrigger = () => {
 	// Handle deploy button
 	const triggersDeploy = document.querySelectorAll("#trigger-deploy");
@@ -79,14 +46,26 @@ const handleDeployTrigger = () => {
 		triggerDeploy.addEventListener("click", async () => {
 			modalLoading.showModal();
 
-			const webhookResponse = await fetchWebhooks(
-				triggerDeploy.dataset.deployWebhook as string,
-				defineFetchMethod(triggerDeploy.dataset.deployHosting as string)
-			);
+			const webhookData = {
+				action: "mkd_fetch_webhooks",
+				webhooks: triggerDeploy.dataset.deployWebhook as string,
+				method: defineFetchMethod(
+					triggerDeploy.dataset.deployHosting as string
+				),
+			};
+
+			const res = await fetch(ajaxURL, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+					"Cache-Control": "no-cache",
+				},
+				body: new URLSearchParams(webhookData),
+			});
 
 			const data = {
 				action: "mkd_log_history",
-				status: webhookResponse.success ? "success" : "error",
+				status: res.ok ? "success" : "error",
 				webhooks: triggerDeploy.dataset.deployWebhook as string,
 			};
 
@@ -102,10 +81,9 @@ const handleDeployTrigger = () => {
 
 			modalLoading.hideModal();
 
-			if (webhookResponse.error) {
+			if (!res.ok) {
 				modalError.showModal();
-			}
-			if (webhookResponse.success) {
+			} else {
 				modalSuccess.showModal();
 			}
 		});
