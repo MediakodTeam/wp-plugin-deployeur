@@ -294,6 +294,23 @@ class Deployeur_Admin {
 				"placeholder" => "https://yourwebsite.com",
 			),
 			array(
+				"name" => "deployeur_preview_token",
+				"title" => __("Preview Token", 'deployeur'),
+				"section" => "deployeur_section_site_options",
+				"placeholder" => "prev-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+			),
+			array(
+				"type" => "select",
+				"name" => "deployeur_build_type",
+				"title" => __("Build type", 'deployeur'),
+				"section" => "deployeur_section_site_options",
+				"options" => array(
+					"static" => __("Fully static", 'deployeur'),
+					"ISR" => __("ISR", 'deployeur'),
+					"ISR_revalidate" => __("ISR with revalidation", 'deployeur'),
+				)
+			),
+			array(
 				"type" => "checkbox",
 				"name" => "deployeur_keep",
 				"title" => __("Data", 'deployeur'),
