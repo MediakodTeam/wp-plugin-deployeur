@@ -26,6 +26,7 @@ class Deployeur_Ajax {
 				'user_id' => get_current_user_id(),
 				'status' => $_POST['status'],
 				'webhooks' => $_POST['webhooks'],
+				'type' => isset($_POST['type']) ? sanitize_text_field($_POST['type']) : 'deploy',
 				'update_count' => $_POST['status'] == "success" ? $this->get_count_of_update() : 0
 			)
 		);

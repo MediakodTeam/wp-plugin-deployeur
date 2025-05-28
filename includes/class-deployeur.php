@@ -67,6 +67,8 @@ class Deployeur {
 		$this->define_admin_hooks();
 
 		$this->init_ajax();
+
+		$this->migrate_db();
 	}
 
 	/**
@@ -197,5 +199,22 @@ class Deployeur {
 	 */
 	public function get_plugin_path() {
 		return plugin_dir_path(dirname(__FILE__));
+	}
+
+	/**
+	 * Retrieve the plugin URL
+	 * 
+	 * @since 1.1.5
+	 * @return string
+	 */
+	public function migrate_db() {
+		// Add a new column "type" in varchar(255) to the deployeur_history table
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'deployeur_history';
+		$column_exists = $wpdb->get_results("SHOW COLUMNS FROM `$table_name` LIKE 'type'");
+		if (empty($column_exists)) {
+			$wpdb->query("ALTER TABLE `$table_name` ADD `type` VARCHAR(255) NOT NULL DEFAULT '' AFTER `webhooks`");
+		}
 	}
 }

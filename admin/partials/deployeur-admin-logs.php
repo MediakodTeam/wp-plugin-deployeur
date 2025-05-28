@@ -54,25 +54,41 @@ $history = $wpdb->get_results("SELECT * FROM $table_name ORDER BY id DESC");
 
 								<div class="relative flex space-x-3">
 									<div>
-										<span class="flex items-center justify-center w-8 h-8 <?= $item->status == "success" ? "bg-green-400" : "bg-red-400" ?> rounded-full text-white ring-8 ring-[#F0F0F1]">
-											<?php if ($item->status == "success") : ?>
-												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5" viewBox="0 0 24 24">
-													<path stroke-linecap="round" stroke-linejoin="round" d="m5 13 6 6 9-14" />
+										<?php if ($item->type === "revalidate"): ?>
+											<span class="flex items-center justify-center w-8 h-8 bg-blue rounded-full text-white ring-8 ring-[#F0F0F1]">
+												<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+													<path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
 												</svg>
-											<?php else : ?>
-												<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5" viewBox="0 0 24 24">
-													<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-												</svg>
-											<?php endif; ?>
-										</span>
+											</span>
+										<?php else: ?>
+											<span class="flex items-center justify-center w-8 h-8 <?= $item->status == "success" ? "bg-green-400" : "bg-red-400" ?> rounded-full text-white ring-8 ring-[#F0F0F1]">
+												<?php if ($item->status == "success") : ?>
+													<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5" viewBox="0 0 24 24">
+														<path stroke-linecap="round" stroke-linejoin="round" d="m5 13 6 6 9-14" />
+													</svg>
+												<?php else : ?>
+													<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5" viewBox="0 0 24 24">
+														<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+													</svg>
+												<?php endif; ?>
+											</span>
+										<?php endif; ?>
 									</div>
 									<div class="flex flex-col md:flex-row min-w-0 flex-1 justify-between gap-4 pt-1.5">
 										<div>
 											<p class="!mt-0 !mb-0 text-sm text-gray-500">
-												<?= sprintf(__('Deployed by <strong class="font-bold text-black">%s</strong>', 'deployeur'), $user->display_name) ?>
-												<?php if ($item->update_count > 0) : ?>
-													<br />
-													<?= sprintf(__('%s update(s) has been published'), $item->update_count) ?>
+												<?php if ($item->type === "revalidate") : ?>
+													<?= sprintf(__('On-demand revalidate made by <strong class="font-bold text-black">%s</strong>', 'deployeur'), $user->display_name) ?>
+													<?php if (isset($item->webhooks)) : ?>
+														<br />
+														<?= $item->webhooks ?>
+													<?php endif; ?>
+												<?php else: ?>
+													<?= sprintf(__('Deployed by <strong class="font-bold text-black">%s</strong>', 'deployeur'), $user->display_name) ?>
+													<?php if ($item->update_count > 0) : ?>
+														<br />
+														<?= sprintf(__('%s update(s) has been published'), $item->update_count) ?>
+													<?php endif; ?>
 												<?php endif; ?>
 											</p>
 										</div>
