@@ -158,12 +158,14 @@ class Deployeur_Admin {
 			));
 		}
 
+		$build_type = is_array($options) && array_key_exists('deployeur_build_type', $options) ? $options['deployeur_build_type'] : 'static';
+
 		// If user has "manage_options" capability
 		if (current_user_can('manage_options')) {
 			// add items before "My account" on wp admin bar
 			$wp_admin_bar->add_node(array(
 				'id' => 'trigger-deploy',
-				'title' => '<span class="ab-icon dashicons dashicons-cloud" style="top: 2px"></span>Deployeur ' . ($this->helpers->get_count_of_update() > 0 ? '<span class="!px-1.5 inline-flex !h-5 items-center justify-center !ml-1 text-white bg-red-500 !rounded-full plugin-count">' . $this->helpers->get_count_of_update() . '</span>' : ''),
+				'title' => '<span class="ab-icon dashicons dashicons-cloud" style="top: 2px"></span>Deployeur ' . ($build_type === 'static' && $this->helpers->get_count_of_update() > 0 ? '<span class="!px-1.5 inline-flex !h-5 items-center justify-center !ml-1 text-white bg-red-500 !rounded-full plugin-count">' . $this->helpers->get_count_of_update() . '</span>' : ''),
 				'href' => admin_url('admin.php?page=deployeur'),
 				'parent' => 'top-secondary',
 				'meta' => array(
@@ -184,6 +186,19 @@ class Deployeur_Admin {
 					'html' => "<span id='trigger-deploy' style='position: absolute; inset: 0; opacity: 0; cursor: pointer' data-deploy-webhook='" . (is_array($options) ? $options['deployeur_webhook_url'] : '') . "' data-deploy-hosting='" . (is_array($options) ? $options['deployeur_hostings_type'] : '') . "'  data-deploy-success='" . sprintf(__('You&apos;re build is in progress ! The average time of a build is %s.', 'deployeur'), is_array($options) ? $options['deployeur_average_build_time'] : '') . "' data-deploy-error='" . __("The deploy has failed, please be sure to have correctly set your webhook URL.", "deployeur") . "' data-ajax-url='" . admin_url('admin-ajax.php') . "'></span>"
 				)
 			));
+
+			if ($build_type !== "static") {
+				$wp_admin_bar->add_node(array(
+					'id' => 'deployeur-revalidate',
+					'title' => __('On-demand revalidate', 'deployeur'),
+					'href' => admin_url('admin.php?page=deployeur'),
+					'parent' => 'trigger-deploy',
+					'meta' => array(
+						'title' => __('On demande revalidate', 'deployeur'),
+						'class' => 'deployeur',
+					)
+				));
+			}
 		} else {
 			$wp_admin_bar->add_node(array(
 				'id' => 'trigger-deploy',
@@ -304,11 +319,22 @@ class Deployeur_Admin {
 				"name" => "deployeur_build_type",
 				"title" => __("Build type", 'deployeur'),
 				"section" => "deployeur_section_site_options",
+				"note" => __("This option will be used to determine how your content will be served to your frontend.
+				<ul class='italic text-gray-500'><li><strong>Fully static</strong>: your site need a total rebuild to update the content.</li>
+				<li><strong>ISR</strong>: your site will be built with Incremental Static Regeneration, which means that your content will be updated on the fly when a user visits a page when cache is expired.</li>
+				<li><strong>ISR with revalidation</strong>: your site will be built with Incremental Static Regeneration, which means that your content will be updated on the fly when a user visits a page when cache is expired, but you can also trigger a revalidation from the WordPress admin area.</li></ul>", 'deployeur'),
 				"options" => array(
 					"static" => __("Fully static", 'deployeur'),
 					"ISR" => __("ISR", 'deployeur'),
 					"ISR_revalidate" => __("ISR with revalidation", 'deployeur'),
 				)
+			),
+			array(
+				"name" => "deployeur_revalidate_endpoint",
+				"title" => __("On-demande revalidate URL", 'deployeur'),
+				"section" => "deployeur_section_site_options",
+				"note" => __("Used only if build type is set to ISR with revalidation.", 'deployeur'),
+				"placeholder" => "https://yourwebsite.com/api/revalidate",
 			),
 			array(
 				"type" => "checkbox",

@@ -11,6 +11,8 @@ global $wpdb;
 $table_name = $wpdb->prefix . 'deployeur_update';
 $update_history = $wpdb->get_results("SELECT * FROM $table_name ORDER BY id DESC");
 
+$build_type = is_array($options) && array_key_exists('deployeur_build_type', $options) ? $options['deployeur_build_type'] : 'static';
+
 ?>
 
 <div class="relative mkd-wrapper">
@@ -26,7 +28,7 @@ $update_history = $wpdb->get_results("SELECT * FROM $table_name ORDER BY id DESC
 			<?= __('Deploy your site', 'deployeur') ?>
 		</h2>
 
-		<?php if ($this->helpers->get_count_of_update() > 0) : ?>
+		<?php if ($this->helpers->get_count_of_update() > 0 && $build_type === "static") : ?>
 			<p class="mt-2 text-sm">
 				<?= sprintf(__("%s change(s) are waiting to be deployed.", "deployeur"), $this->helpers->get_count_of_update()) ?>
 			</p>
