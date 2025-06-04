@@ -25,7 +25,7 @@ class Deployeur_i18n {
 		load_theme_textdomain('deployeur', dirname(dirname(__FILE__)) . '/languages');
 
 		$locale = get_locale();
-		$locale_file = dirname(dirname(__FILE__)) . "/languages/$locale.php";
+		$locale_file = dirname(dirname(__FILE__)) . "/languages/deployeur-$locale.php";
 
 		if (is_readable($locale_file)) {
 			require_once($locale_file);
@@ -59,6 +59,9 @@ class Deployeur_i18n {
 			'cancel' => __("Cancel"),
 			'confirm-clear' => __("Are you sure you want to clear the history?", 'deployeur'),
 			'confirm-clear-content' => __("This action is irreversible.", "deployeur"),
+			'revalidate-success' => __("Your path is revalidated. Next visitor will get the updated content.", "deployeur"),
+			'revalidate-error' => __("It looks like something went wrong. Please check your API endpoint.", "deployeur"),
+			'revalidate-loading' => __("The revalidation is in progress, please wait a few seconds before trying again. If the problem persists, please contact your administrator.", "deployeur"),
 		);
 
 		// Insert data attribute
