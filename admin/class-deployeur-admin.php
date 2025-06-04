@@ -334,7 +334,7 @@ class Deployeur_Admin {
 				"title" => __("On-demande revalidate URL", 'deployeur'),
 				"section" => "deployeur_section_site_options",
 				"note" => __("Used only if build type is set to ISR with revalidation.", 'deployeur'),
-				"placeholder" => "https://yourwebsite.com/api/revalidate",
+				"placeholder" => "https://yourwebsite.com/api/revalidate?path=",
 			),
 			array(
 				"type" => "checkbox",

@@ -116,7 +116,7 @@ class Deployeur_Helpers {
 		if (get_user_by("ID", $user_id)) {
 			$user_name = get_user_by("ID", $user_id)->display_name;
 		} else {
-			$user_name = __("Un utilisateur", "deployeur");
+			$user_name = __("A user", "deployeur");
 		}
 
 		$post_link = get_edit_post_link($item_id);

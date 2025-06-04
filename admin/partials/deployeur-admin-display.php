@@ -46,11 +46,6 @@ $hasValidRevalidate = is_array($options) && isset($options['deployeur_revalidate
 		<?php endif; ?>
 	</div>
 
-	<button id="trigger-deploy" class="<?= $hasValidRevalidate ? "!bg-green hover:!bg-green-600 !border-green" : "!bg-gray-500 !border-gray-500 !opacity-50 cursor-not-allowed"  ?> !px-7 !py-2.5 !font-bold !flex items-center !rounded-none  space-x-1 !text-black !text-base  hover:!text-black !transition button button-primary" <?= !$hasValidRevalidate ? "disabled='disabled'" : "" ?> data-deploy-webhook="<?= is_array($options) ? $options['deployeur_revalidate_endpoint'] : "" ?>" data-deploy-hosting="<?= is_array($options) ? $options['deployeur_hostings_type'] : "" ?>" data-deploy-success="<?= __("You're path is revalidated. Next visitor will get the updated content.", "deployeur") ?> " data-deploy-error="<?= __("It's looks like something went wrong. Please check your API endpoint", "deployeur") ?>" data-ajax-url="<?= admin_url('admin-ajax.php') ?>">
-		<span class="dashicons dashicons-cloud-upload"></span>
-		<span><?= __('Deploy now', 'deployeur') ?></span>
-	</button>
-
 
 	<div class="px-5 pt-2 pb-2 mt-12 -ml-5 sm:pb-0 lg:px-12" id="mkd-table-history">
 		<div class="md:flex md:items-center md:justify-between">
